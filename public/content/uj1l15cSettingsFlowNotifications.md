@@ -1,0 +1,10 @@
+---
+titleTag: Jewelify - uj1l15cSettingsFlowNotifications
+metaDescription: Grow your online presence and score more clients with responsive and user-friendly websites.
+ogTitle: Jewelify - uj1l15cSettingsFlowNotifications
+ogDescription: Grow your online presence and score more clients with responsive and user-friendly websites.
+ogImage: /uploads/template.png
+twitterTitle: Jewelify - uj1l15cSettingsFlowNotifications
+twitterDescription: Grow your online presence and score more clients with responsive and user-friendly websites.
+twitterImage: /uploads/template.png
+---

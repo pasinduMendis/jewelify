@@ -1,0 +1,131 @@
+backend:
+  name: git-gateway
+  repo: William-BoomerBaker/hyperscale-test-blog
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: public/uploads
+public_folder: /uploads
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+    - label: "About Page SEO Settings"
+      name: "About Page SEO Settings"
+      file: "public/content/about.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Appointment Page SEO Settings"
+      name: "Appointment Page SEO Settings"
+      file: "public/content/appointment.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Blog Page SEO Settings"
+      name: "Blog Page SEO Settings"
+      file: "public/content/blog.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Contact Page SEO Settings"
+      name: "Contact Page SEO Settings"
+      file: "public/content/contact.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Index Page SEO Settings"
+      name: "Index Page SEO Settings"
+      file: "public/content/index.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Pricing Page SEO Settings"
+      name: "Pricing Page SEO Settings"
+      file: "public/content/pricing.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+    - label: "Privacy Policy Page SEO Settings"
+      name: "Privacy Policy Page SEO Settings"
+      file: "public/content/privacy-policy.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+        - { label: "Body", name: "body", widget: "markdown"}
+    - label: "Thank You Page SEO Settings"
+      name: "Thank You Page SEO Settings"
+      file: "public/content/thank-you.md"
+      fields:
+        - { label: "Title Tag", name: "titleTag", widget: "string"}
+        - { label: "Meta Description", name: "metaDescription", widget: "string"}
+        - { label: "OG Title", name: "ogTitle", widget: "string"}
+        - { label: "OG Description", name: "ogDescription", widget: "string"}
+        - { label: "OG Image", name: "ogImage", widget: "image"}
+        - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+        - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+        - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "public/posts"
+    create: true
+    identifier_field: slug
+    fields:
+      - { label: "Slug", name: "slug", widget: "string"}
+      - { label: "Title Tag", name: "titleTag", widget: "string"}
+      - { label: "Meta Description", name: "metaDescription", widget: "string"}
+      - { label: "OG Title", name: "ogTitle", widget: "string"}
+      - { label: "OG Description", name: "ogDescription", widget: "string"}
+      - { label: "OG Image", name: "ogImage", widget: "image"}
+      - { label: "Twitter Title", name: "twitterTitle", widget: "string"}
+      - { label: "Twitter Description", name: "twitterDescription", widget: "string"}
+      - { label: "Twitter Image", name: "twitterImage", widget: "image"}
+      - { label: "Event Name For Tracking", name: "eventNameForTracking", widget: "string"}
+      - { label: "Event ID For Tracking", name: "eventIdForTracking", widget: "string"}
+      - { label: "Blog Title", name: "blogTitle", widget: "string"}
+      - { label: "Blog Description", name: "blogDescription", widget: "string"}
+      - { label: "Author", name: "author", widget: "string"}
+      - { label: "Publish Date", name: "publishDate", widget: "string"}
+      - { label: "Time To Read", name: "timeToRead", widget: "string"}
+      - { label: "Blog Image", name: "blogImage", widget: "image"}
+      - { label: "Body", name: "body", widget: "markdown"}
