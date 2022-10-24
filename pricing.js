@@ -7,32 +7,30 @@ import { useRouter } from "next/router";
 import { createImageFromInitials } from "../custom/createprofilePic";
 import Dropdown from 'react-bootstrap/Dropdown';
 
-export default function Pricing() {
+export default function Pricing({leftBar}) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [pageloading, setPageLoding] = useState(true);
 
   useEffect(() => {
     localStorage.setItem("redirect", "/");
+    leftBar("setting")
     if (status != "loading" && !session) {
       localStorage.setItem("redirect", "/pricing");
       router.push("/sign-in");
       setPageLoding(false);
     } else if (status == "authenticated") {
-      setPageLoding(false);
+      if(session.isPayment){
+        router.push('/inventory')
+      }else{
+        setPageLoding(false);
+      }
+      
     }
   }, [session]);
 
   return (
     <div>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <title>Jewelify</title>
-        <meta name="description" content />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      {/* Add your site or application content here */}
       {pageloading ? (
         <div className=" d-flex justify-content-center mt-5">
           <div className="spinner-border" role="status">
@@ -41,148 +39,8 @@ export default function Pricing() {
         </div>
       ) : (
         <div>
-        <div className="div-block-314 tab">
-        {session?
-                <>
-                <a  className="w-inline-block">
-                  <img
-                    src="images/Notification-Bell.svg"
-                    loading="lazy"
-                    alt=""
-                  />
-                </a>
-
-                <Dropdown>
-                  <Dropdown.Toggle variant="white" id="dropdown-custom-1">
-                    <img
-                      src={session.profilePicture?session.profilePicture:createImageFromInitials(
-                        500,
-                        session.id,
-                        "#1E90FF"
-                      )}
-                      style={{ width: "50px", borderRadius: "50px" }}
-                      loading="lazy"
-                      alt=""
-                      className="image-81"
-                    />
-                    {/*  <div className="text-block-31">{session.id}</div>*/}
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu className="super-colors bg-primary text-center">
-                    <Dropdown.Item className="bg-primary" variant="primary" active onClick={signOut}>
-                    SIGN-OUT
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </>:
-                <>
-                 <a
-                        onClick={() => {
-                          localStorage.setItem(
-                            "redirect",
-                            "/pricing"
-                          );
-                          signIn();
-                        }}
-                        className="btn-cta-header2 w-button float-right"
-                      >
-                        Sign In
-                      </a>
-                </>
-                }
-        </div>
-        <div className="div-block-320">
-          <div className="div-block-321"><img src="images/bx_menu.svg" loading="lazy" alt="" /></div><img src="images/Jewelify.svg" loading="lazy" alt="" className="image-83" />
-        </div>
-        <div className="div-block-310">
-          <div className="div-block-311">
-            <div className="div-block-316">
-              <div className="div-block-317"><img src="images/Jewelify.svg" loading="lazy" alt="" /></div>
-              <div className="div-block-319">
-                {/* <a  className="link-block-31 w-inline-block">
-                  <div className="div-block-318"><img src="images/Vector_4.svg" loading="lazy" alt="" className="image-82" />
-                    <div className="text-block-33">Dashboard</div>
-                  </div>
-                </a> */}
-                <a onClick={()=>router.push('/inventory')} className="link-block-31 w-inline-block">
-                  <div className="div-block-318"><img src="images/mdi_monetization_on.svg" loading="lazy" alt="" className="image-82" />
-                    <div className="text-block-33">Inventory</div>
-                  </div>
-                </a>
-                {/* <a  className="link-block-31 w-inline-block">
-                  <div className="div-block-318"><img src="images/mdi_assessment.svg" loading="lazy" alt="" className="image-82" />
-                    <div className="text-block-33">Analytics</div>
-                  </div>
-                </a> */}
-                <a href="/e-commerce" className="link-block-31 highlight w-inline-block">
-                  <div className="div-block-318"><img src="images/mdi_monetization_on-1.svg" loading="lazy" width={18} alt="" className="image-82" />
-                    <div className="text-block-33 highlight">Integrations</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="div-block-316">
-              <a onClick={()=>router.push('/setting')} className="link-block-31 w-inline-block">
-                <div className="div-block-318"><img src="images/outline-settings-1.svg" loading="lazy" alt="" className="image-82" />
-                  <div className="text-block-33">Settings</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div className="div-block-312">
-            <div className="div-block-314">
-              <div className="div-block-315">
-                {session?
-                <>
-                <a  className="w-inline-block">
-                  <img
-                    src="images/Notification-Bell.svg"
-                    loading="lazy"
-                    alt=""
-                  />
-                </a>
-
-                <Dropdown>
-                  <Dropdown.Toggle variant="white" id="dropdown-custom-1">
-                    <img
-                      src={session.profilePicture?session.profilePicture:createImageFromInitials(
-                        500,
-                        session.id,
-                        "#1E90FF"
-                      )}
-                      style={{ width: "50px", borderRadius: "50px" }}
-                      loading="lazy"
-                      alt=""
-                      className="image-81"
-                    />
-                    {/*  <div className="text-block-31">{session.id}</div>*/}
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu className="super-colors bg-primary text-center">
-                    <Dropdown.Item className="bg-primary" variant="primary" active onClick={signOut}>
-                    SIGN-OUT
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </>:
-                <>
-                 <a
-                        onClick={() => {
-                          localStorage.setItem(
-                            "redirect",
-                            "/displayProducts-online"
-                          );
-                          signIn();
-                        }}
-                        className="btn-cta-header2 w-button float-right"
-                      >
-                        Sign In
-                      </a>
-                </>
-                }
-                
-              </div>
-            </div>
+        <div className="div-block-343">
+            
             <div className="wrap-pricing lll">
               <div className="div-block-9">
                 <h1 className="heading-pricing">Pricing</h1>
@@ -733,8 +591,6 @@ export default function Pricing() {
             </div>
             <div className="spacer" />
           </div>
-        </div>
-        {/* [if lte IE 9]><![endif] */}
       </div>)}
     </div>
   );

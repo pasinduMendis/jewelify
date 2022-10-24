@@ -10,15 +10,12 @@ export default function SignUp({ csrfToken, providers }) {
   const [password, setpassword] = useState('')
   const [confpassword, setconfpassword] = useState('')
   const [errMsg, seterrMsg] = useState('')
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const userSignUp = async (e) => {
     e.preventDefault()
-    setLoading(true)
     if (password != confpassword) {
       seterrMsg('password and confirm password does not match')
-      setLoading(false)
       return null
     }
     const res = await axios.post(
@@ -28,7 +25,6 @@ export default function SignUp({ csrfToken, providers }) {
     console.log(res)
     if (res.data.message != 'You have successfully created a new account!') {
       seterrMsg(res.data.message)
-      setLoading(false)
       return null
     }
     const options = { redirect: false, name, email, password }
@@ -36,7 +32,6 @@ export default function SignUp({ csrfToken, providers }) {
     //console.log(result)
     if (result?.error) {
       seterrMsg(result.error)
-      setLoading(false)
       return
     }
     return router.push('/pricing')
@@ -81,9 +76,9 @@ export default function SignUp({ csrfToken, providers }) {
                         <label style={{ fontSize: 13 }}>User Name</label>
                         <input
                           type='text'
-                          className={errMsg?'form-control is-invalid':'form-control'}
+                          className='form-control'
                           style={{
-                            backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                            backgroundColor: '#F8FBFD',
                             fontSize: 13,
                           }}
                           placeholder='Enter Your User Name'
@@ -97,10 +92,10 @@ export default function SignUp({ csrfToken, providers }) {
                       <div className='form-group'>
                         <label style={{ fontSize: 13 }}>Email</label>
                         <input
-                          type='email'
-                          className={errMsg?'form-control is-invalid':'form-control'}
+                          type='text'
+                          className='form-control'
                           style={{
-                            backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                            backgroundColor: '#F8FBFD',
                             fontSize: 13,
                           }}
                           placeholder='Enter Your Email Address'
@@ -114,10 +109,10 @@ export default function SignUp({ csrfToken, providers }) {
                       <div className='form-group'>
                         <label style={{ fontSize: 13 }}>Password</label>
                         <input
-                          className={errMsg?'form-control is-invalid':'form-control'}
+                          className='form-control'
                           type='password'
                           style={{
-                            backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                            backgroundColor: '#F8FBFD',
                             fontSize: 13,
                           }}
                           placeholder='Enter Your Password'
@@ -131,10 +126,10 @@ export default function SignUp({ csrfToken, providers }) {
                       <div className='form-group'>
                         <label style={{ fontSize: 13 }}>Confirm Password</label>
                         <input
-                          className={errMsg?'form-control is-invalid':'form-control'}
+                          className='form-control'
                           type='password'
                           style={{
-                            backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                            backgroundColor: '#F8FBFD',
                             fontSize: 13,
                           }}
                           placeholder='Confirm Your Password'
@@ -164,17 +159,13 @@ export default function SignUp({ csrfToken, providers }) {
                             userSignUp(e)
                           }}
                         >
-                           {!loading && <img
-                                    src='./img/Email.png'
-                                    width='20px'
-                                    height='20px'
-                                  ></img>}
-                                  <b style={{ fontSize: 11, color: '#131313' }}>
-                                    {loading?<div className=" d-flex justify-content-center">
-                            <div className="spinner-border" role="status">
-                              <span className="sr-only">Loading...</span>
-                            </div>
-                          </div>: "Sign Up with credentials"}
+                          <img
+                            src='./img/Email.png'
+                            width='20px'
+                            height='20px'
+                          ></img>
+                          <b style={{ fontSize: 11, color: '#131313' }}>
+                            Sign Up with credentials
                           </b>
                         </button>
                       </div>

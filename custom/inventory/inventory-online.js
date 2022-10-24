@@ -4,12 +4,11 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import axios from "axios";
-import InventoryMap from "./inventoryMap";
-import AddInventory from "./addInventory";
+import InventoryMap from "../inventoryMap";
+import AddInventory from "../addInventory";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useRouter } from "next/router";
 import Loading from "./inventory-loading";
-import InventoryMapEcom from "./eComOnlyMap";
 
 
 export default function Online({ invenData, addInv}) {
@@ -18,6 +17,7 @@ export default function Online({ invenData, addInv}) {
  /*  const [addFilter, setAddFilter] = useState(false);
   const [addProduct, setAddProduct] = useState(false); */
   const [att, setAtt] = useState("");
+  const [progress, setProgress] = useState(0);
   const [msg, setmsg] = useState("");
   const [totalProduct, setTotalProduct] = useState(0);
   const [totalWooCom, setTotalWooCom] = useState(0);
@@ -29,8 +29,6 @@ export default function Online({ invenData, addInv}) {
   const [tableloading, setTableLoding] = useState(true);
   const [Disptype, setDispType] = useState("ADD PRODUCT");
   const [companies, setCompanies] = useState(["shopify", "woo-commerce"]);
-  const [dispWooOnly,setDispWooOnly]=useState(false)
-  const [dispShopifyOnly,setDispShopifyOnly]=useState(false)
   const percentage=69
 
   const [filterData, setFiterData] = useState({
@@ -43,7 +41,7 @@ export default function Online({ invenData, addInv}) {
     jewelryType: "",
   });
   //console.log(session && session.authToken);
-  //console.log(filterData.platform);
+  console.log(filterData.platform);
 
   //console.log(session);
   //const accessToken='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRlc3QwMTRAdGVzdC5jb20iLCJpYXQiOjE2NDUxMTI0NTJ9.APlfsocgH0Kl8uQs5TDPtnhNBZidyl-KqgvrgV2tslg'
@@ -67,34 +65,13 @@ export default function Online({ invenData, addInv}) {
   const mapProduct = () => {
     if (data.length > 0) {
       return data.map((item, key) => {
-        if(dispWooOnly){
-          return (
-          <InventoryMapEcom
-            product={item}
-            key={key}
-            setInv={(val) => {
-              setData(val);
-            }}
-            ecom={"woo-commerce"}
-          />
-          )
-        }if(dispShopifyOnly){
-          return (
-          <InventoryMapEcom
-            product={item}
-            key={key}
-            setInv={(val) => {
-              setData(val);
-            }}
-            ecom={"shopify"}
-          />
-          )
-        }return (
+        return (
           <InventoryMap
             product={item}
             key={key}
-            setInv={(val) => {
-              setData(val);
+            showAtt={(val, att) => {
+              setshowAtt(val);
+              setAtt(att);
             }}
           />
         );
@@ -181,7 +158,9 @@ export default function Online({ invenData, addInv}) {
               setTableLoding(true);
               for (let i = 0; i < inven.data.length; i++) {
                 //console.log(inven.data[i].id)
-               
+                if (i%10==0) {
+              setProgress(i)
+              console.log("progress")}
               //console.log(inven.data[i].id)
               
                 if (inven.data[i].id != "" && inven.data[i].id) {
@@ -203,58 +182,7 @@ export default function Online({ invenData, addInv}) {
             setTableLoding(false);
           },
           (err) => {
-            //console.log(err);
-          }
-        ));
-  };
-
-  const fetchDataEcoomerce = async (ecom) => {
-    setTableLoding(true);
-    session &&
-      (await axios
-        .get(
-          `https://api.jewelify.ai/.netlify/functions/inventory?platform=${ecom}`,
-          {
-            headers: {
-              Authorization: session.authToken,
-            },
-          }
-        )
-        .then(
-          (inven) => {
-            //console.log(inven);
-            setData(inven.data);
-            //console.log(inven.data.length)
-            var wooCount = 0;
-            var shopifyCount = 0;
-
-            if (inven.data.length > 0) {
-              setTableLoding(true);
-              for (let i = 0; i < inven.data.length; i++) {
-                //console.log(inven.data[i].id)
-               
-              //console.log(inven.data[i].id)
-              
-                if (inven.data[i].id != "" && inven.data[i].id) {
-                  wooCount = wooCount + 1;
-                }
-                if (
-                  inven.data[i].shopify_id != "" &&
-                  inven.data[i].shopify_id
-                ) {
-                  shopifyCount = shopifyCount + 1;
-                }
-                
-              }
-            }
-
-            setTotalWooCom(wooCount);
-            setTotalShopify(shopifyCount);
-            setTotalProduct(inven.data.length ? inven.data.length : 0);
-            setTableLoding(false);
-          },
-          (err) => {
-            //console.log(err);
+            console.log(err);
           }
         ));
   };
@@ -284,7 +212,7 @@ export default function Online({ invenData, addInv}) {
                 
                 <div
                   className="row d-flex justify-content-between my-3 p-3"
-                  style={{ backgroundColor: "#E3F2FF",overflow:'scroll',flexWrap:"initial" }}
+                  style={{ backgroundColor: "#E3F2FF" }}
                 >
                   <div className="col-3 row">
                     <div
@@ -293,10 +221,6 @@ export default function Online({ invenData, addInv}) {
                         backgroundColor: "#ffff",
                         borderRadius: "500px",
                       }}
-                      onClick={()=>{
-                        fetchDataEcoomerce('woo-commerce')
-                      setDispShopifyOnly(false)
-                    setDispWooOnly(true)}}
                     >
                       <img src="/img/s1.png" alt="gdrive" />
                     </div>
@@ -331,11 +255,6 @@ export default function Online({ invenData, addInv}) {
                         backgroundColor: "#ffff",
                         borderRadius: "500px",
                       }}
-                      onClick={()=>{
-                        fetchDataEcoomerce('shopify')
-                        setDispWooOnly(false)
-                        setDispShopifyOnly(true)
-                        }}
                     >
                       <img src="/img/s2.png" alt="gdrive" />
                     </div>
@@ -433,9 +352,6 @@ export default function Online({ invenData, addInv}) {
                             borderRadius: "40px",
                           }}
                           onClick={() => {
-                            document.getElementById(
-                              "displayFilter"
-                            ).style.visibility = "hidden";
                             fetchDataFilter();
                           }}
                         >
@@ -445,8 +361,8 @@ export default function Online({ invenData, addInv}) {
                     </div>
                   </div>
                 </div>
-                <div className="filterInventory py-3" style={{ visibility:'hidden',position:'absolute', overflow:'auto',border:'1px solid #0288F7',backgroundColor:'white' }} id="displayFilter">
-                  <div className="row d-flex justify-content-between mt-2 px-5 bg-white">
+                <div style={{ visibility: "hidden" }} id="displayFilter">
+                  <div className="row d-flex justify-content-between mt-2">
                     <div className="col-md-2 input-outer">
                       <label className="field-label-11">Company</label>
                       <div className="form-group right-inner-addon input-container">
@@ -570,11 +486,10 @@ export default function Online({ invenData, addInv}) {
                     </div>
                   </div>
                 </div>
-                <div className="w-embed" >
-                  
-                  <div className="table-wrap" style={{zIndex:2}}> 
-                      <table className="table-1" >
-                        <thead style={{ textAlign: "center",}}>
+                <div className="w-embed">
+                  <div className="table-wrap"> 
+                      <table className="table-1">
+                        <thead style={{ textAlign: "center" }}>
                           <tr>
                             <th scope="col" className="p-3">
                               Category
@@ -643,7 +558,7 @@ export default function Online({ invenData, addInv}) {
                               Certificate Number
                             </th>
                             <th scope="col" className="p-3">
-                              Lab Certification
+                              Laboratory Certification
                             </th>
                             <th scope="col" className="p-3">
                               Style
@@ -740,7 +655,7 @@ export default function Online({ invenData, addInv}) {
                             </th>
                           </tr>
                         </thead>
-                        <tbody style={{zIndex:0}}>
+                        <tbody>
                           {addInv && mapAddProduct()}
                           {mapProduct()}
                         </tbody>
@@ -749,7 +664,6 @@ export default function Online({ invenData, addInv}) {
                       </table>
                     
                   </div>
-                  
                   <style
                     dangerouslySetInnerHTML={{
                       __html:

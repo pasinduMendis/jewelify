@@ -1,20 +1,19 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import { useSession, signIn, signOut } from "next-auth/react";
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import Woo from '../custom/e-commerce/wwo'
-import Shopify from '../custom/e-commerce/shopify'
-import ProductSync from "../custom/product-sync/product-sync";
+import Woo from '../custom/wwo'
+import Dropdown from 'react-bootstrap/Dropdown';
+import { createImageFromInitials } from "../custom/createprofilePic";
 
-const Ecommerce = ({leftBar}) => {
+const Ecommerce = () => {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [pageloading, setPageLoding] = useState(true)
   const [Disptype, setDispType] = useState('CONNECT')
-  const [sync,setSync]=useState(false)
   useEffect(() => {
     localStorage.setItem('redirect', '/')
-    leftBar("integrations")
     if (status != 'loading' && !session) {
       localStorage.setItem('redirect', '/e-commerce')
       router.push('/sign-in')
@@ -25,7 +24,15 @@ const Ecommerce = ({leftBar}) => {
 
   return (
     <>
-      
+      <div>
+        <Head>
+          <meta charSet='utf-8' />
+          <meta httpEquiv='x-ua-compatible' content='ie=edge' />
+          <title>Jewelify</title>
+          <meta name='description' content />
+          <meta name='viewport' content='width=device-width, initial-scale=1' />
+        </Head>
+        {/* Add your site or application content here */}
         {pageloading ? (
           <div className=' d-flex justify-content-center mt-5'>
             <div className='spinner-border' role='status'>
@@ -34,31 +41,22 @@ const Ecommerce = ({leftBar}) => {
           </div>
         ) : (
           <>
-            {Disptype == 'woocommerce' && (
-              <>
-              
-                    <Woo
-                      setInv={(val) => setData(val)}
-                      msg={(val) => setmsg(val)}
-                      dispType={(val) => setDispType(val)}
-                    />
-                  
-              </>
-            )}
-            {Disptype == 'shopify' && (
+            {Disptype == 'upload' && (
               <>
                 <div
                   className='py-5 px-4'
                   style={{
-                    background: 'rgba(0, 0, 0, 0.0)',
+                    background: 'rgba(0, 0, 0, 0.5)',
                     position: 'fixed',
                     zIndex: 2000,
                     width: '100%',
                     height: '100vh',
                   }}
                 >
-                  <div>
-                    <Shopify
+                  <div
+                    
+                  >
+                    <Woo
                       setInv={(val) => setData(val)}
                       msg={(val) => setmsg(val)}
                       dispType={(val) => setDispType(val)}
@@ -67,28 +65,139 @@ const Ecommerce = ({leftBar}) => {
                 </div>
               </>
             )}
-            {Disptype == "woocomSync" && (
-            <>
-              <ProductSync
-                ecomType='woo-commerce'
-                msg={(val) => setmsg(val)}
-                dispType={(val) => setDispType(val)}
-              />
-            </>
-          )}
+            <div className='wrapper '>
+              <div
+                id='pricing-area'
+                className='pricing-area custom-border'
+                //style={{ backgroundColor: '#f3fbfe' }}
+              >
+                <div className='div-block-327'>
+                  <div className='div-block-325'>
+                    <div className='div-block-316'>
+                      <div className='div-block-326'>
+                        <img src='images/Jewelify.svg' loading='lazy' alt='' />
+                      </div>
+                      <div className='div-block-319'>
+                        {/* <a href='#' className='link-block-31 w-inline-block'>
+                          <div className='div-block-315'>
+                            <img
+                              src='images/Vector_4.svg'
+                              loading='lazy'
+                              alt=''
+                              className='image-85'
+                            />
+                            <div className='text-block-34'>Dashboard</div>
+                          </div>
+                        </a> */}
+                        <div onClick={()=>router.push('/inventory')} className='link-block-31 w-inline-block'>
+                          <div className='div-block-315'>
+                            <img
+                              src='images/mdi_monetization_on.svg'
+                              loading='lazy'
+                              alt=''
+                              className='image-85'
+                            />
+                            <div className='text-block-34'>Inventory</div>
+                          </div>
+                        </div>
+                        {/* <a href='#' className='link-block-31 w-inline-block'>
+                          <div className='div-block-315'>
+                            <img
+                              src='images/mdi_assessment.svg'
+                              loading='lazy'
+                              alt=''
+                              className='image-85'
+                            />
+                            <div className='text-block-34'>Analytics</div>
+                          </div>
+                        </a> */}
+                        <div
+                          onClick={()=>router.push('/e-commerce')}
+                          className='link-block-31 highlight w-inline-block'
+                        >
+                          <div className='div-block-315'>
+                            <img
+                              src='images/mdi_monetization_on-1.svg'
+                              loading='lazy'
+                              width={18}
+                              alt=''
+                              className='image-85'
+                            />
+                            <div className='text-block-34 highlight'>
+                              Integrations
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='div-block-316'>
+                      <div onClick={()=>router.push('/setting')} className='link-block-31 w-inline-block'>
+                        <div className='div-block-315'>
+                          <img
+                            src='images/outline-settings-1.svg'
+                            loading='lazy'
+                            alt=''
+                            className='image-85'
+                          />
+                          <div className='text-block-34'>Settings</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className='div-block-328 aaa'>
+                    <div className='div-block-322'>
+                      <div className='div-block-315'>
+                      {session?
+                <>
+                <a  className="w-inline-block">
+                  <img
+                    src="images/Notification-Bell.svg"
+                    loading="lazy"
+                    alt=""
+                  />
+                </a>
 
-{Disptype == "shpoifySync" && (
-            <>
-              <ProductSync
-                ecomType='shpoify'
-                msg={(val) => setmsg(val)}
-                dispType={(val) => setDispType(val)}
-              />
-            </>
-          )}
-           <>
-                    
-                    <div className='text-center'>
+                <Dropdown>
+                  <Dropdown.Toggle variant="white" id="dropdown-custom-1">
+                    <img
+                      src={session.profilePicture?session.profilePicture:createImageFromInitials(
+                        500,
+                        session.id,
+                        "#1E90FF"
+                      )}
+                      style={{ width: "50px", borderRadius: "50px" }}
+                      loading="lazy"
+                      alt=""
+                      className="image-81"
+                    />
+                    {/*  <div className="text-block-31">{session.id}</div>*/}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu className="super-colors bg-primary text-center">
+                    <Dropdown.Item className="bg-primary" variant="primary" active onClick={signOut}>
+                    SIGN-OUT
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>:
+                <>
+                 <a
+                        onClick={() => {
+                          localStorage.setItem(
+                            "redirect",
+                            "/displayProducts-online"
+                          );
+                          signIn();
+                        }}
+                        className="btn-cta-header2 w-button float-right"
+                      >
+                        Sign In
+                      </a>
+                </>
+                }
+                      </div>
+                    </div>
+                    <div className='col-md-12 text-center'>
                       <div className='about-bottom-left mb-30 clearfix text-style'>
                         <h3>Where Do You Want To Sell Online?</h3>
                       </div>
@@ -111,7 +220,7 @@ const Ecommerce = ({leftBar}) => {
                                     /*  onChange={(e) => {
                                       console.log('xyz')
                                     }} */
-                                    value='woocommerce'
+                                    value='upload'
                                     onClick={(e) => {
                                       console.log(e.target.value)
                                       setDispType(e.target.value)
@@ -137,19 +246,9 @@ const Ecommerce = ({leftBar}) => {
                                   alt=''
                                 />
                                 <div className='div-block-332'>
-                                <button
-                                    className='button-133 w-button'
-                                    /*  onChange={(e) => {
-                                      console.log('xyz')
-                                    }} */
-                                    value='shopify'
-                                    onClick={(e) => {
-                                      console.log(e.target.value)
-                                      setDispType(e.target.value)
-                                    }}
-                                  >
+                                  <a href='#' className='button-133 w-button'>
                                     Connect
-                                  </button>
+                                  </a>
                                   <a
                                     href='#'
                                     className='button-133 _2 w-button'
@@ -314,11 +413,13 @@ const Ecommerce = ({leftBar}) => {
                         </div>
                       </div>
                     </div>
-                    <div className="spacer" />
-                  </>
+                  </div>
+                </div>
+              </div>
+            </div>
           </>
         )}
-      
+      </div>
     </>
   )
 }

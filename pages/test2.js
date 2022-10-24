@@ -2,6 +2,10 @@
 import Head from "next/head";
 import React, { useCallback, useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import axios from "axios";
+import InventoryMap from "../custom/inventoryMap";
+import AddInventory from "../custom/addInventory";
 import FileUploader from "../custom/csvUpload/csvUploader";
 import { useRouter } from "next/router";
 import { createImageFromInitials } from "../custom/createprofilePic";
@@ -16,30 +20,26 @@ export default function Inventory() {
     const [data, setData] = useState([]);
     const [pageloading, setPageLoding] = useState(true);
     const [addInv, setaddInv] = useState(false);
-    const [dataloading, setaDataLoding] = useState(false);
+    const [dataloading, setaDataLoding] = useState(true);
     const router = useRouter();
     const [Disptype, setDispType] = useState("ADD PRODUCT");
     const [dispOnline,setDispOnline]=useState(true)
-    const [msg,setmsg]=useState('')
   
     useEffect(() => {
       localStorage.setItem("redirect", "/");
-      /* router.push('/inventory','/inventory?page=online',{shallo:true}) */
+      router.push('/test2','/test2?page=online',{shallo:true})
       if (status != "loading" && !session) {
         localStorage.setItem("redirect", "/inventory?page=online");
         router.push("/sign-in");
       } else if (status == "authenticated") {
         console.log(session)
         setPageLoding(false);
+        fetchData();
         
       }
     }, [session,mode]);
-
-    if (msg != "") {
-      setTimeout(() => setmsg(""), 5000);
-    }
   
-    /* const fetchData = async () => {
+    const fetchData = async () => {
         setaDataLoding(true)
       await axios
           .get(`https://api.jewelify.ai/.netlify/functions/inventory` , {
@@ -53,7 +53,7 @@ export default function Inventory() {
               setData(inven);
               setaDataLoding(false)
           })
-    }; */
+    };
 
   return (
     <div>
@@ -167,7 +167,7 @@ export default function Inventory() {
                   </div>
                 </a> */}
                   <a
-                    onClick={()=>router.push('/inventory')}
+                    href="/inventory"
                     className="link-block-31 highlight w-inline-block"
                   >
                     <div className="div-block-315">
@@ -192,7 +192,7 @@ export default function Inventory() {
                     <div className="text-block-34">Analytics</div>
                   </div>
                 </a> */}
-                  <a onClick={()=>router.push('/e-commerce')} className="link-block-31 w-inline-block">
+                  <a href="/e-commerce" className="link-block-31 w-inline-block">
                     <div className="div-block-315">
                       <img
                         src="images/mdi_assessment.svg"
@@ -206,7 +206,7 @@ export default function Inventory() {
                 </div>
               </div>
               <div className="div-block-316">
-                <a onClick={()=>router.push('/setting')} className="link-block-31 w-inline-block">
+                <a href="/setting" className="link-block-31 w-inline-block">
                   <div className="div-block-315">
                     <img
                       src="images/outline-settings-1.svg"
@@ -285,7 +285,7 @@ export default function Inventory() {
                         borderRadius: "40px",
                         color:dispOnline?"white":"black"
                       }}
-                      onClick={() => {router.push('/inventory','/inventory?page=online',{shallo:true});setDispOnline(true);setMode('online')}}
+                      onClick={() => {router.push('/test2','/test2?page=online',{shallo:true});setDispOnline(true);setMode('online')}}
                     >
                       online
                     </button>
@@ -298,7 +298,7 @@ export default function Inventory() {
                         color:!dispOnline?"white":"black",
                         borderRadius: "40px",
                       }}
-                      onClick={() => {router.push('/inventory','/inventory?page=offline',{shallo:true});setDispOnline(false);setMode('offline')}}
+                      onClick={() => {router.push('/test2','/test2?page=offline',{shallo:true});setDispOnline(false);setMode('offline')}}
                     >
                       Offline
                     </button>
@@ -323,17 +323,17 @@ export default function Inventory() {
 
                         <Dropdown.Menu className="super-colors bg-white text-center">
                           <Dropdown.Item className="bg-white" variant="primary" active>
-                          <button className="link-block-2 w-inline-block mb-2 col-12" style={{backgroundColor:'white'}} onClick={()=>{setaddInv(true)}}>
+                          <button className="link-block-2 w-inline-block mb-2 col-12" onClick={()=>{setaddInv(true)}}>
                     <h1 className="heading-32 ">Manually Add A Product</h1>
                   </button>
                           </Dropdown.Item>
                           <Dropdown.Item className="bg-white" variant="primary" active>
-                          <button className="link-block-2 w-inline-block mb-2 col-12" style={{backgroundColor:'white'}} onClick={()=>{setDispType("ADD PRODUCT")}}>
+                          <button className="link-block-2 w-inline-block mb-2 col-12" onClick={()=>{setDispType("ADD PRODUCT")}}>
                     <h1 className="heading-32">Import From Your POS</h1>
                   </button>
                           </Dropdown.Item>
                           <Dropdown.Item className="bg-white" variant="primary" active>
-                          <button className="link-block-2 w-inline-block mb-2 col-12" style={{backgroundColor:'white'}} onClick={()=>{setDispType("upload")}}>
+                          <button className="link-block-2 w-inline-block mb-2 col-12" onClick={()=>{setDispType("upload")}}>
                     <h1 className="heading-32">Upload A File</h1>
                   </button>
                           </Dropdown.Item>
@@ -347,11 +347,7 @@ export default function Inventory() {
                 <span className="sr-only">Loading...</span>
               </div>
             </div>:
-            <>
-            {msg && <p className="text-danger">{msg}</p>}
-            {mode=='online'?<Online addInv={addInv}/>:<Offline addInv={addInv}/>}
-            </>
-           }
+            mode=='online'?<Online invenData={data} addInv={addInv}/>:<Offline invenData={data} addInv={addInv}/>}
               </div>
               
              {/* addpage data */}

@@ -163,8 +163,8 @@ export default function Layer10() {
   const handleOpenPicker = () => {
     openPicker({
       clientId:
-        "196130488066-3ds1ukalbpui1fle5n2885psime32q3u.apps.googleusercontent.com",
-      developerKey: "AIzaSyBahE02UWYOO_w116czsXVJn6wPSixWMjk",
+        "988384303453-en9d8n6ugh02fo2pqrbosbgmp3hbphi2.apps.googleusercontent.com",
+      developerKey: "AIzaSyCZZSktjEyKDmDkr4z85PiEPbukEAbPnOI",
       viewId: "DOCS_IMAGES",
       // token: token, // pass oauth token in case you already have one
       showUploadView: false,

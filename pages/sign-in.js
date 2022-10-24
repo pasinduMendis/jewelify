@@ -7,23 +7,20 @@ export default function SignIn({ csrfToken, providers }) {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [errMsg, seterrMsg] = useState('')
-  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const userSignIn = async (e) => {
     e.preventDefault()
     //console.log({email:email,password:password})
-    setLoading(true)
     const options = { redirect: false, email, password }
     const result = await signIn('credentials', options)
     //console.log(result)
     if (result?.error) {
       seterrMsg(result.error)
-    setLoading(false)
       return
     }
     return router.push(
-      localStorage.getItem('redirect') !='/' ? localStorage.getItem('redirect') :'/pricing'
+      localStorage.getItem('redirect') ? localStorage.getItem('redirect') : '/'
     )
   }
 
@@ -71,10 +68,10 @@ export default function SignIn({ csrfToken, providers }) {
                               <div className='form-group'>
                                 <label style={{ fontSize: 13 }}>Email</label>
                                 <input
-                                  type='email'
-                                  className={errMsg?'form-control is-invalid':'form-control'}
+                                  type='text'
+                                  className='form-control'
                                   style={{
-                                    backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                                    backgroundColor: '#F8FBFD',
                                     fontSize: 13,
                                   }}
                                   placeholder='Enter Your Email Address'
@@ -88,10 +85,10 @@ export default function SignIn({ csrfToken, providers }) {
                               <div className='form-group'>
                                 <label style={{ fontSize: 13 }}>Password</label>
                                 <input
-                                  className={errMsg?'form-control is-invalid':'form-control'}
+                                  className='form-control'
                                   type='password'
                                   style={{
-                                    backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
+                                    backgroundColor: '#F8FBFD',
                                     fontSize: 13,
                                   }}
                                   placeholder='Enter Your Password'
@@ -119,21 +116,14 @@ export default function SignIn({ csrfToken, providers }) {
                                     userSignIn(e)
                                   }}
                                 >
-                                  <>
-                                  {!loading && <img
+                                  <img
                                     src='./img/Email.png'
                                     width='20px'
                                     height='20px'
-                                  ></img>}
+                                  ></img>
                                   <b style={{ fontSize: 11, color: '#131313' }}>
-                                    {loading?<div className=" d-flex justify-content-center">
-                            <div className="spinner-border" role="status">
-                              <span className="sr-only">Loading...</span>
-                            </div>
-                          </div>:"Sign In with credentials"}
+                                    Sign In with credentials
                                   </b>
-                                  </>
-                                  
                                 </button>
                               </div>
                               <br />

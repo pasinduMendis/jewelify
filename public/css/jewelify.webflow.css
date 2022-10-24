@@ -3999,17 +3999,14 @@ ul {
 .wrap-upload-popup {
   position: relative;
   overflow: visible;
-  width: 80%;
-  height: 90%;
+  width: 689px;
   margin: auto;
-  /*  padding: 20px 50px; */
+  padding: 50px 65px;
   border: 1px solid #dae6ec;
   border-radius: 6.42px;
   background-color: #fff;
   box-shadow: 3px 3px 30px 0 rgba(0, 0, 0, 0.25);
   text-align: center;
-
-  background-size: auto;
 }
 
 .wrap-upload-popup.hide {
@@ -4027,7 +4024,7 @@ ul {
   display: -ms-flexbox;
   display: flex;
   width: 400px;
-  height: 300px;
+  height: 350px;
   margin-right: auto;
   margin-left: auto;
   -webkit-box-pack: center;
@@ -4048,7 +4045,7 @@ ul {
   border-radius: 6.43px;
   background-color: #f8f8f8;
   background-image: url('../images/Group.svg');
-  background-position: 50% 28%;
+  background-position: 50% 35%;
   background-size: auto;
   background-repeat: no-repeat;
 }
@@ -5186,7 +5183,7 @@ ul {
 }
 
 .heading-47 {
-  margin-bottom: 30px;
+  margin-bottom: 46px;
   font-family: Roboto, sans-serif;
   font-size: 40px;
   line-height: 40px;
@@ -6700,8 +6697,8 @@ ul {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 10px;
-  -webkit-transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 400ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 400ms cubic-bezier(.645, .045, .355, 1);
   font-family: Hind, sans-serif;
   font-size: 16px;
   line-height: 16px;
@@ -7872,8 +7869,8 @@ ul {
   align-items: center;
   border-radius: 43px;
   background-color: #0288f7;
-  -webkit-transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 400ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 400ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   color: #fff;
   font-size: 15px;
@@ -8019,8 +8016,8 @@ ul {
   align-items: center;
   border-radius: 43px;
   background-color: #0288f7;
-  -webkit-transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 400ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 400ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   color: #fff;
   font-weight: 600;
@@ -8241,8 +8238,8 @@ ul {
   height: 39px;
   border: 1px solid #0288f7;
   border-radius: 100%;
-  -webkit-transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 300ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 300ms cubic-bezier(.645, .045, .355, 1);
 }
 
 .link-block-23:hover {
@@ -8258,8 +8255,8 @@ ul {
   height: 39px;
   border: 1px solid #0288f7;
   border-radius: 100%;
-  -webkit-transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 300ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 300ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 300ms cubic-bezier(.645, .045, .355, 1);
 }
 
 .link-block-24:hover {
@@ -8402,8 +8399,8 @@ ul {
   background-position: 80% 50%;
   background-size: auto;
   background-repeat: no-repeat;
-  -webkit-transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 400ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 400ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   color: #fff;
   font-size: 12px;
@@ -9289,8 +9286,8 @@ ul {
   -ms-flex-align: center;
   align-items: center;
   background-color: #0288f7;
-  -webkit-transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 200ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 200ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   color: #fff;
   font-size: 20px;
@@ -9317,8 +9314,8 @@ ul {
   -ms-flex-align: center;
   align-items: center;
   background-color: #e7e7e7;
-  -webkit-transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 200ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 200ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   color: #414141;
   font-size: 20px;
@@ -9516,8 +9513,8 @@ ul {
   background-position: 70% 50%;
   background-size: auto;
   background-repeat: no-repeat;
-  -webkit-transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: all 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-transition: all 200ms cubic-bezier(.645, .045, .355, 1);
+  transition: all 200ms cubic-bezier(.645, .045, .355, 1);
   font-family: Manrope, sans-serif;
   font-weight: 600;
 }
@@ -11677,11 +11674,8 @@ ul {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  cursor: pointer;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-left: -5px;
-  padding-top: 15px;
-  padding-bottom: 15px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -11696,18 +11690,21 @@ ul {
 
 .link-block-31.highlight {
   width: 100%;
+  margin-left: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
+  padding-left: 5px;
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
   background-color: #fff;
-  
 }
 
 .link-block-31.highlight {
   width: 100%;
+  margin-left: 5px;
   padding-top: 15px;
   padding-bottom: 15px;
+  padding-left: 5px;
   border-top-left-radius: 14px;
   border-bottom-left-radius: 14px;
   background-color: #fff;
@@ -11808,7 +11805,7 @@ ul {
   position: fixed;
   left: 0%;
   top: 0%;
-  right: 0%;
+  right: auto;
   bottom: 0%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -13550,8 +13547,8 @@ ul {
   }
 
   .button-116 {
-    -webkit-transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
-    transition: all 400ms cubic-bezier(0.645, 0.045, 0.355, 1);
+    -webkit-transition: all 400ms cubic-bezier(.645, .045, .355, 1);
+    transition: all 400ms cubic-bezier(.645, .045, .355, 1);
   }
 
   .div-block-108 {
@@ -17428,8 +17425,7 @@ ul {
   }
 
   .wrap-upload-popup {
-    width: 80% !important;
-    height:90% !important;
+    width: 90%;
   }
 
   .div-block-11 {
@@ -19418,7 +19414,7 @@ ul {
   }
 
   .wrap-upload-popup {
-    padding: 10px 10px !important;
+    padding: 50px 20px;
   }
 
   .heading-24 {
@@ -21846,18 +21842,5 @@ ul {
   }
 }
 
-.all-loading{
-  
-    display: inline-block;
-    height: 1em;
-    position: relative;
-    overflow: hidden;
-    background-color: #DDDBDD;
-  
- 
-}
 
-.customer-hover:hover{
- overflow: auto !important;
- text-overflow:clip !important;
-}
+

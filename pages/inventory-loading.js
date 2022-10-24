@@ -116,7 +116,7 @@ export default function Online({ invenData, addInv}) {
                        
                        
                       >
-                        ADD FILTER
+                        SEARCH
                       </button>
                       <div id="closeFilter" style={{ display: "none" }}>
                         <button
