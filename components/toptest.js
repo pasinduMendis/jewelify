@@ -8,14 +8,11 @@ import { createImageFromInitials } from "../custom/createprofilePic";
 import Dropdown from "react-bootstrap/Dropdown";
 import 'react-credit-cards/es/styles-compiled.css';
 import FrameLoading from "../custom/loadingPages/top";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 const Frame = ({ Component }) => {
   const { data: session, status } = useSession();
   const [pageloading, setPageLoding] = useState(true);
   const [leftbar,setLeftbar]=useState("")
-  const[loading,setLoading]=useState(false)
   const router = useRouter();
 
   useEffect(() => {
@@ -25,7 +22,6 @@ const Frame = ({ Component }) => {
       router.push("/sign-in");
     } else if (status == "authenticated") {
       setPageLoding(false)
-
 
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,7 +36,68 @@ const Frame = ({ Component }) => {
         <meta name="description" content />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <>
+      {pageloading ? (
+        <FrameLoading />
+      ) : (
+        <>
+          <div className="div-block-322 tab">
+            <div>
+              <img src="images/Jewelify-1.svg" loading="lazy" alt="" />
+            </div>
+            <div className="div-block-315">
+              {session ? (
+                <>
+                  <a  className="w-inline-block">
+                    <img
+                      src="images/Notification-Bell.svg"
+                      loading="lazy"
+                      alt=""
+                    />
+                  </a>
+
+                  <Dropdown>
+                    <Dropdown.Toggle variant="white" id="dropdown-custom-1">
+                      <img
+                        src={session.profilePicture?session.profilePicture:createImageFromInitials(
+                          500,
+                          session.id,
+                          "#1E90FF"
+                        )}
+                        style={{ width: "50px", borderRadius: "50px" }}
+                        loading="lazy"
+                        alt=""
+                        className="image-81"
+                      />
+                      {/*  <div className="text-block-31">{session.id}</div>*/}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu className="super-colors bg-primary text-center">
+                      <Dropdown.Item
+                        className="bg-primary"
+                        variant="primary"
+                        active
+                        onClick={signOut}
+                      >
+                        SIGN-OUT
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </>
+              ) : (
+                <>
+                  <a
+                    onClick={() => {
+                      localStorage.setItem("redirect", "/setting");
+                      signIn();
+                    }}
+                    className="btn-cta-header2 w-button float-right"
+                  >
+                    Sign In
+                  </a>
+                </>
+              )}
+            </div>
+          </div>
           <div className="div-block-323">
             <div className="div-block-324">
               <img src="images/bx_menu.svg" loading="lazy" alt="" />
@@ -89,26 +146,13 @@ const Frame = ({ Component }) => {
                       <div className={leftbar=="integrations"?"text-block-34 highlight":"text-block-34"} id="integration">Integrations</div>
                     </div>
                   </a>
-                  <a id="customerce" onClick={()=>{
-                    router.push('/customers')}} className={leftbar=="customers"?"link-block-31 highlight w-inline-block":"link-block-31 w-inline-block"}>
-                    <div className="div-block-315">
-                      <img
-                        src="images/mdi_monetization_on_1.svg"
-                        loading="lazy"
-                        width={18}
-                        alt=""
-                        className="image-85"
-                      />
-                      <div className={leftbar=="customers"?"text-block-34 highlight":"text-block-34"} id="integration">customers</div>
-                    </div>
-                  </a>
                 </div>
               </div>
               <div className="div-block-316">
                 <a
                 id="settingBg"
                  onClick={()=>{
-                  router.push('/generalSetting')}}
+                  router.push('/setting')}}
                   className={leftbar=="setting"?"link-block-31 highlight w-inline-block":"link-block-31 w-inline-block"}
                 >
                   <div className="div-block-315">
@@ -125,25 +169,9 @@ const Frame = ({ Component }) => {
             </div>
             <div className="div-block-328 aaa">
               <div className="div-block-322">
-                {(pageloading) ?
                 <div className="div-block-315">
-                <div className="px-5">
-                  <Skeleton 
-                  
-                          circle={true}
-                          baseColor='#CFDEEA'
-                          style={{
-                            height: "50px",
-                            borderRadius: "50px",
-                            width: "50px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                        />
-                </div>
-              </div>
-                :
-                <div className="div-block-315">
-                  
+                  {session ? (
+                    <>
                       <a  className="w-inline-block">
                         <img
                           src="images/Notification-Bell.svg"
@@ -179,16 +207,30 @@ const Frame = ({ Component }) => {
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
-
-                </div>}
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        onClick={() => {
+                          localStorage.setItem("redirect", "/setting");
+                          signIn();
+                        }}
+                        className="btn-cta-header2 w-button float-right"
+                      >
+                        Sign In
+                      </a>
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="div-block-343" style={{height:`${pageloading?"60vh":"auto"}`}}>
-              {!pageloading&&<Component leftBar={(val)=>setLeftbar(val)} sessionLoad={(val)=>{setLoading(val)}}/>}
+              <div className="div-block-343">
+              <Component leftBar={(val)=>setLeftbar(val)} />
               </div>
               <div className="spacer" />
             </div>
           </div>
         </>
+      )}
     </div>
   );
 };

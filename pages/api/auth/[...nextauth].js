@@ -24,7 +24,7 @@ export default NextAuth({
         
         if (user.data.user) {
           // Any object returned will be saved in `user` property of the JWT
-          console.log("user available")
+          //console.log("user available")
           //console.log(user.data.user)
           return user.data.user
         } else {
@@ -47,6 +47,7 @@ export default NextAuth({
         token.accessToken=user.accessToken
         token.profilePicture=user.profilePicture
         token.name=user.name
+        token.isPayment=user.isPayment
       }
       return token;
     },
@@ -56,6 +57,7 @@ export default NextAuth({
         session.authToken=token.accessToken;
         session.profilePicture=token.profilePicture;
         session.name=token.name;
+        session.isPayment=token.isPayment;
       }
       return session
     }

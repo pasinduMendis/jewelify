@@ -135,7 +135,7 @@ const MyComponent = ({ price, packageName }, props) => {
   );
 };
 
-export default function Layer4({ paymentIntent }, props) {
+export default function Layer4({ paymentIntent,leftBar }, props) {
   const { data: session , status} = useSession();
   const router = useRouter();
   console.log(router.query);
@@ -144,6 +144,7 @@ export default function Layer4({ paymentIntent }, props) {
 
   useEffect(() => {
     localStorage.setItem("redirect", "/");
+    leftBar("setting")
     if (status != "loading" && !session) {
       localStorage.setItem("redirect", "/update-payinfo");
       router.push("/sign-in");
@@ -154,13 +155,6 @@ export default function Layer4({ paymentIntent }, props) {
 
   return (
     <div>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <title>Jewelify</title>
-        <meta name="description" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       {pageloading ? (
         <div className=" d-flex justify-content-center mt-5">
           <div className="spinner-border" role="status">
@@ -169,80 +163,10 @@ export default function Layer4({ paymentIntent }, props) {
         </div>
       ) : (
         <>
-      <div className="wrapper">
-        <header className="header-area">
-          {/* Menu Area
-          ============================================ */}
-          <div id="main-menu" className="sticker white-bg">
-            <div className="container">
-              <div className="row">
-                <div className="col-md-12 col-xs-12">
-                  <div className="logo float-left navbar-header">
-                    <h2 className="logo">
-                      <a href="index.html">Jewelify</a>
-                    </h2>
-                    <button
-                      className="navbar-toggle collapsed"
-                      data-toggle="collapse"
-                      data-target="#main-menu-2"
-                    >
-                      <img src="/img/menu.svg" className="menu-open" alt="" />
-                    </button>
-                  </div>
-                  <div
-                    className="main-menu text-center collapse navbar-collapse"
-                    id="main-menu-2"
-                  >
-                    <nav>
-                      <ul className="menu one-page">
-                        <li className="active">
-                          <a href="#home-area">Home</a>
-                        </li>
-                        <li>
-                          <a href="#about-area">Services</a>
-                        </li>
-                        <li>
-                          <a href="#features-area">Price</a>
-                        </li>
-                        <li>
-                          <a href="#screenshort-area">About Us</a>
-                        </li>
-                        <li>
-                          <a href="#pricing-area">Contact</a>
-                        </li>
-                        {!session && (
-                          <>
-                            <a
-                              href="#about"
-                              onClick={signIn}
-                              className="get-started-btn scrollto float-right"
-                            >
-                              Sign In
-                            </a>
-                          </>
-                        )}
-
-                        {session && (
-                          <>
-                            <a
-                              href="#about"
-                              onClick={signOut}
-                              className="get-started-btn scrollto float-right"
-                            >
-                              Sign Out
-                            </a>
-                          </>
-                        )}
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        <section className="pay-info-sec bg-lightblue pt-20 pb-60 custom-border">
-          <div className="container">
+      <div className="div-block-343">
+        
+        
+          <div className="mb-5">
             
             <div className="row justify-content-center">
               <div className="col-12 text-center">
@@ -252,9 +176,8 @@ export default function Layer4({ paymentIntent }, props) {
               </div>
             </div>
           </div>
-        </section>
-        <section className="pay-info-wrap">
-          <div className="container">
+       
+          <div className="">
             <div className="row justify-content-center">
               <div className="col-md-7 col-lg-7 col-12 col-sm-12">
                 <div className="c_card">
@@ -271,101 +194,11 @@ export default function Layer4({ paymentIntent }, props) {
               
             </div>
           </div>
-        </section>
+        
       </div>
-      {/* contact area
-      ============================================ */}
-      <div className="contact-area">
-        <div className="container">
-          <div className="row">
-            <div className="conatct-info fix">
-              <div className="col-md-5 col-sm-4 text-style">
-                <h2>Jewelify</h2>
-                <p>
-                  Copyright © 2021
-                  <a href="http://bootexperts.com/" target=" _blank">
-                    Jewelify
-                  </a>
-                  <br />
-                  .All right reserved.
-                </p>
-              </div>
-              <div className="col-md-2 col-sm-4 footer-links text-style t-m-res">
-                <h3 className="mb-30">Services</h3>
-                <ul>
-                  <li>
-                    <a >service - 1</a>
-                  </li>
-                  <li>
-                    <a >service - 2</a>
-                  </li>
-                  <li>
-                    <a >service - 3</a>
-                  </li>
-                  <li>
-                    <a >service - 4</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-2 col-sm-4 footer-links text-style t-m-res">
-                <h3 className="mb-30">Company</h3>
-                <ul>
-                  <li>
-                    {" "}
-                    <a >Work</a>
-                  </li>
-                  <li>
-                    <a >About</a>
-                  </li>
-                  <li>
-                    <a >Resources</a>
-                  </li>
-                  <li>
-                    <a >Pricing</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-3 col-sm-4 text-style t-m-res">
-                <h3 className="mb-30">Useful Links</h3>
-                <div className="footer-icon">
-                  <ul>
-                    <li>
-                      <a>
-                        <img src="/img/facebook.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                    <li>
-                      <a>
-                        <img src="/img/instagram.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                    <li>
-                      <a>
-                        <img src="/img/twitter.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* start scrollUp
-      ============================================ */}
-      {/*<div id="toTop">
-          <i class="fa fa-chevron-up"></i>
-      </div>
-  </div>*/}
-      {/* jquery
-		============================================ */}
-      {/* bootstrap JS
-		============================================ */}
-      {/* plugins JS
-		============================================ */}
-      {/* main JS
-		============================================ */}
-    </>)}
+      </>
+      )}
+      
     </div>
   );
 }

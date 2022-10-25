@@ -6,8 +6,8 @@ import FileUploader from "../custom/csvUpload/csvUploader";
 import { useRouter } from "next/router";
 import { createImageFromInitials } from "../custom/createprofilePic";
 import Dropdown from 'react-bootstrap/Dropdown';
-import Offline from "../custom/inventory/inventory-offline";
-import Online from "../custom/inventory/inventory-online";
+import Offline from "../custom/customers/customer-offline";
+import Online from "../custom/customers/customer-online";
 import ApiToken from "../custom/Apitoken";
 
 
@@ -25,10 +25,10 @@ export default function Inventory({leftBar}) {
   
     useEffect(() => {
       localStorage.setItem("redirect", "/");
-      leftBar("inventory")
+      leftBar("customers")
       /* router.push('/inventory','/inventory?page=online',{shallo:true}) */
       if (status != "loading" && !session) {
-        localStorage.setItem("redirect", "/inventory?page=online");
+        localStorage.setItem("redirect", "/customers?page=online");
         router.push("/sign-in");
       } else if (status == "authenticated") {
         console.log(session)
@@ -63,7 +63,7 @@ export default function Inventory({leftBar}) {
           )}
             <>
               
-              <h3 className="heading-148">Inventory</h3>
+              <h3 className="heading-148">Customers</h3>
                 <div className="d-flex justify-content-between pb-5">
                   <div className="bg-light">
                     <button
@@ -75,7 +75,7 @@ export default function Inventory({leftBar}) {
                         borderRadius: "40px",
                         color:dispOnline?"white":"black"
                       }}
-                      onClick={() => {router.push('/inventory','/inventory?page=online',{shallo:true});setDispOnline(true);setMode('online')}}
+                      onClick={() => {router.push('/customers','/customers?page=online',{shallo:true});setDispOnline(true);setMode('online')}}
                     >
                       online
                     </button>
@@ -88,7 +88,7 @@ export default function Inventory({leftBar}) {
                         color:!dispOnline?"white":"black",
                         borderRadius: "40px",
                       }}
-                      onClick={() => {router.push('/inventory','/inventory?page=offline',{shallo:true});setDispOnline(false);setMode('offline')}}
+                      onClick={() => {router.push('/customers','/customers?page=offline',{shallo:true});setDispOnline(false);setMode('offline')}}
                     >
                       Offline
                     </button>

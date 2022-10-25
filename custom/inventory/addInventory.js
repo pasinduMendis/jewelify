@@ -62,8 +62,10 @@ const AddInventory = (props) => {
     jewelryType: "",
     assetId: "",
   });
+  const [msg, setmsg] = useState("");
+  const [loading, setLoading] = useState(false);
   const addData = async () => {
-    console.log(inventory)
+    setLoading(true)
     await axios
       .post(
         "https://api.jewelify.ai/.netlify/functions/inventory",
@@ -93,8 +95,9 @@ const AddInventory = (props) => {
               .then(
                 (res) => {
                   //console.log(inven);
-                  props.msg("You have successfully uploaded your inventory");
+                  setmsg("You have successfully uploaded your inventory");
                   props.setInv(res.data);
+                  setLoading(false)
                   setinventory({
                     categoryAbr: "",
                     stockno: "",
@@ -153,14 +156,17 @@ const AddInventory = (props) => {
                 },
                 (err) => {
                   console.log(err);
+                  setLoading(false)
                 }
               );
           } else {
-            props.msg(res.data.message);
+            setmsg(res.data.message);
+            setLoading(false)
           }
         },
         (err) => {
           console.log(err);
+          setLoading(false)
         }
       );
   };
@@ -1103,6 +1109,16 @@ const AddInventory = (props) => {
             </button>
           }
         </td>
+        <td>
+              <div style={{ width: "auto", height: "35px" }}>
+                {msg && <p className="text-danger">{msg}</p>}
+                {loading && (
+                  <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                )}
+              </div>
+            </td>
       </tr>
     );
   };

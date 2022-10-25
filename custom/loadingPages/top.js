@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
-import ProgressBar from "react-bootstrap/ProgressBar";
-import Spinner from "react-bootstrap/Spinner";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const FrameLoading = ({ Component }) => {
   return (
@@ -20,21 +21,18 @@ const FrameLoading = ({ Component }) => {
             <div className="div-block-316">
               <div className="div-block-326">
                 <div
-                  className="spinner-grow text-secondary"
+                  className=" text-secondary"
                   role="status"
-                  style={{ width: "auto", height: "0px" }}
                 >
-                  <ProgressBar
-                    variant="primary"
-                    style={{
-                      height: "10px",
-                      borderRadius: "50px",
-                      width: "100px",
-                      backgroundColor: "#CFDEEA",
-                    }}
-                    className="align-self-center"
-                    now={0}
-                  />
+                   <Skeleton 
+                          baseColor='#CFDEEA'
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:'#CFDEEA'
+                          }}
+                        />
                 </div>
               </div>
               <div className="div-block-319">
@@ -50,20 +48,17 @@ const FrameLoading = ({ Component }) => {
                   <div className="div-block-315">
                     <div className={"pt-4"} id="integration">
                       <div
-                        className="spinner-grow text-secondary"
+                        className=" text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                         <Skeleton 
+                          baseColor='#CFDEEA'
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor: "#CFDEEA",
+                            backgroundColor:'#CFDEEA'
                           }}
-                          className="align-self-center "
-                          now={0}
                         />
                       </div>
                     </div>
@@ -76,20 +71,17 @@ const FrameLoading = ({ Component }) => {
                   <div className="div-block-315">
                     <div className={"pt-4"} id="integration">
                       <div
-                        className="spinner-grow text-secondary"
+                        className=" text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                          baseColor='#CFDEEA'
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor: "#CFDEEA",
+                            backgroundColor:'#CFDEEA'
                           }}
-                          className="align-self-center "
-                          now={0}
                         />
                       </div>
                     </div>
@@ -102,21 +94,18 @@ const FrameLoading = ({ Component }) => {
                 <div className="div-block-315">
                   <div className={"pt-4"} id="integration">
                     <div
-                      className="spinner-grow text-secondary"
+                      className=" text-secondary"
                       role="status"
-                      style={{ width: "auto", height: "0px" }}
                     >
-                      <ProgressBar
-                        variant="primary"
-                        style={{
-                          height: "10px",
-                          borderRadius: "50px",
-                          width: "100px",
-                          backgroundColor: "#CFDEEA",
-                        }}
-                        className="align-self-center "
-                        now={0}
-                      />
+                       <Skeleton 
+                          baseColor='#CFDEEA'
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:'#CFDEEA'
+                          }}
+                        />
                     </div>
                   </div>
                 </div>
@@ -127,15 +116,18 @@ const FrameLoading = ({ Component }) => {
             <div className="div-block-322">
               <div className="div-block-315">
                 <div
-                  className="spinner-grow text-secondary"
-                  role="status"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    backgroundColor: "#CFDEEA",
-                  }}
+                  
                 >
-                  <span className="sr-only">Loading...</span>
+                  <Skeleton 
+                          circle={true}
+                          baseColor='#CFDEEA'
+                          style={{
+                            height: "50px",
+                            borderRadius: "50px",
+                            width: "50px",
+                            backgroundColor:'#CFDEEA'
+                          }}
+                        />
                 </div>
               </div>
             </div>
@@ -149,15 +141,18 @@ const FrameLoading = ({ Component }) => {
                         style={{ height: "50vh" }}
                       >
                         <div
-                          className="spinner-grow"
-                          role="status"
-                          style={{
-                            width: "200px",
-                            height: "200px",
-                            backgroundColor: "#CFDEEA",
-                          }}
+                          
                         >
-                          <span className="sr-only">Loading...</span>
+                           <Skeleton 
+                          circle={true}
+                          baseColor='#CFDEEA'
+                          style={{
+                            height: "200px",
+                            borderRadius: "50px",
+                            width: "200px",
+                            backgroundColor:'#CFDEEA'
+                          }}
+                        />
                         </div>
                       </div>
                     </div>

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import axios from "axios";
 import {
   Elements,
@@ -11,19 +10,20 @@ import { signIn, signOut, useSession, getSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/router";
-import { createImageFromInitials } from "../custom/createprofilePic";
 import Dropdown from 'react-bootstrap/Dropdown';
+import CheckoutrSuccess from "./checkout-success";
 
 const stripePromise = loadStripe(
   "pk_test_51LKNLnBZCQ2Q2AwNSFVBJ1ypYRGARlLRilbTGgO4xgNgU8YexXg1BFckqqstRijsSk9JlmHXni6PCIgzaCFRUh5M00FbkevBFe"
 );
 
-const MyComponent = ({ price, packageName }, props) => {
+const MyComponent = ({ price, packageName,respones }, props) => {
   const { data: session, status } = useSession();
   const stripe = useStripe();
   const elements = useElements();
   const [isProcessing, setProcessingTo] = useState(false);
   const [checkoutError, setCheckoutError] = useState();
+  
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const router = useRouter();
@@ -63,24 +63,13 @@ const MyComponent = ({ price, packageName }, props) => {
         }
       );
 
-      console.log(res);
+      //console.log(res);
       if (paymentMethodReq.error) {
         setCheckoutError(paymentMethodReq.error.message);
         setProcessingTo(false);
         return;
       }
 
-      /* const { error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: paymentMethodReq.paymentMethod.id,
-      });
-
-      if (error) {
-        setCheckoutError(error.message);
-        setProcessingTo(false);
-        return;
-      } */
-
-      //onSuccessfulCheckout();
       await axios
         .post(
           "https://api.jewelify.ai/.netlify/functions/payment",
@@ -99,12 +88,16 @@ const MyComponent = ({ price, packageName }, props) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
         });
-      console.log("success");
-      setCheckoutError("success");
+      //console.log("success");
+      if(res.data.subscription_id){
+        respones("success")
+      }
+      //console.log(res)
+      //setCheckoutError(res.message?res.message:"success");
       setProcessingTo(false);
-      setTimeout(() => router.push('/inventory'), 2000);
+      //setTimeout(() => router.push('/inventory'), 1500);
     } catch (err) {
       setCheckoutError(err.message);
       setProcessingTo(false);
@@ -119,6 +112,7 @@ const MyComponent = ({ price, packageName }, props) => {
           <label>Name *</label>
           <div className="c_input-group">
             <input
+            className='form-control'
               type="text"
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter your full name"
@@ -127,8 +121,9 @@ const MyComponent = ({ price, packageName }, props) => {
         </div>
         <div className="form-group">
           <label>Email *</label>
-          <div className="c_input-group">
+          <div className="c_input-group ">
             <input
+            className='form-control'
               type="text"
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address"
@@ -138,34 +133,35 @@ const MyComponent = ({ price, packageName }, props) => {
         <div className="form-group">
           <label>Card Details *</label>
 
-          <CardElement onChange={handleCardDetailsChange} />
+          <CardElement onChange={handleCardDetailsChange} className='form-control' />
         </div>
-        {checkoutError && <p>{checkoutError}</p>}
-        <button className="btn btn-primary" disabled={isProcessing || !stripe}>
-          {isProcessing ? "Processing..." : `sunscribe & pay $${price}`}
+        {checkoutError && <p className="text-danger">{checkoutError}</p>}
+        <button className="button-8 w-button" disabled={isProcessing || !stripe}>
+          {isProcessing ? <div className=' d-flex justify-content-center'>
+            <div className='spinner-border' role='status'>
+              <span className='sr-only'>Loading...</span>
+            </div>
+          </div> : `SUBMIT`}
         </button>
       </form>
     </>
   );
 };
 
-export default function Layer4({ paymentIntent,leftBar }, props) {
+export default function Layer4( props) {
   const { data: session,status } = useSession();
   const [isSbscription, setisSbscription] = useState(false);
   const [loading, setLoading] = useState(true);
   const [pageloading, setPageLoding] = useState(true);
+  const [response,setResponse]=useState("")
   const router = useRouter();
-  ///console.log(session.authToken)
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   
   useEffect(() => {
     localStorage.setItem("redirect", "/");
-    leftBar("setting")
     if (status != "loading" && !session) {
       localStorage.setItem("redirect", "/pricing");
       router.push("/sign-in");
-      setPageLoding(false);
+      //setPageLoding(false);
     } else if (status == "authenticated") {
       getUser();
       //setPageLoding(false);
@@ -184,37 +180,32 @@ export default function Layer4({ paymentIntent,leftBar }, props) {
         })
         .then((res) => {
           if(res.data.user.isPayment){
-            router.push('/update-payinfo')
+           // router.push('/update-payinfo')
           }else{
             setPageLoding(false);
           }
-          
-          
-          //console.log(res.data.user)
-          
         });
     }
   };
 
   return (
-    <>
-          {pageloading ? (
-        <div className=" d-flex justify-content-center mt-5">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </div>
-      ) : (
-              <div className="">
-                <div className="div-block-300">
+    <>{
+      response=='success' &&
+      <>
+      <CheckoutrSuccess />
+      </>
+    }
+      <div className="" style={{backgroundColor:'#F4FBFF'}}>
+                <div className="div-block-300 pb-5 px-3 pt-3" style={{width:'100%',marginTop:'0'}}>
                   <h1 className="heading-134-copy">Enter Your Payment Details Below</h1>
                   <div className="card-123456">
-                    <div className="div-block-302">
-                      <div className="text-block-27">Payment Information</div>
+                    <div className="div-block-302 px-5">
+                      <div className="text-block-27 mb-5">Payment Information</div>
                       <Elements stripe={stripePromise}>
                         <MyComponent
-                          price={router.query.package}
-                          packageName={router.query.packageName}
+                          price={props.packagePrice}
+                          packageName={props.packageName}
+                          respones={(val)=>setResponse(val)}
                           {...props}
                         />
                       </Elements>
@@ -223,7 +214,7 @@ export default function Layer4({ paymentIntent,leftBar }, props) {
                     <div className="div-block-301">
                       <div className="wrap-card lol">
                         <h1 className="heading-card1 dddd">You have to pay</h1>
-                        <h1 className="heading-14 aaa">${router.query.package}/mo</h1>
+                        <h1 className="heading-14 aaa">${props.packagePrice}/mo</h1>
                         <div className="line" />
                       </div>
                       <div className="wrap2-card">
@@ -249,10 +240,7 @@ export default function Layer4({ paymentIntent,leftBar }, props) {
                     </div>
                   </div>
                 </div>
-              </div>
-            
-        )}
-        
+            </div>
       
     </>
   );

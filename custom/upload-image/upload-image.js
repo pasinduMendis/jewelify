@@ -1,14 +1,16 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
+import { useSession, signIn, signOut } from "next-auth/react";
 import useDrivePicker from "react-google-drive-picker";
 import { useState, useEffect } from "react";
-import { Awsupload } from "../custom/aws-upload/awsUpload";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { Awsupload } from "../aws-upload/awsUpload";
 import Dropzone from "react-dropzone";
 import convert from 'image-file-resize';
-import { createImageFromInitials } from "../createprofilePic";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-export default function Layer10(props) {
+export default function UploadImage(props) {
+  const { data: session, status } = useSession();
   const [filedata, setfileData] = useState([]);
   const [progress, setProgress] = useState(0);
   const [finishUpload,setFinisUpload]=useState(false)
@@ -16,12 +18,20 @@ export default function Layer10(props) {
   const [file, setFile] = useState([]);
   const [msg, setmsg] = useState("");
   const [Uperr,setUperr]=useState(false)
+  const [mapImage,setmapImage]=useState(false)
+  const [totalFile,setTotalFile]=useState(0)
+  const[uploadedFile,setUploadFile]=useState(0)
   const [openPicker, data, authResponse] = useDrivePicker();
-  console.log(process.env.BACK_BASE_URL)
+  const [pageloading, setPageLoding] = useState(true);
+  const router=useRouter()
+  //console.log(process.env.BACK_BASE_URL)
+
+
 
   const gDriveUpload=async (fileDatas)=>{
     var resUrl=[]
     if(fileDatas.length>0){
+      setTotalFile(fileDatas.length)
     for (let i = 0; i < fileDatas.length; i++) {
       console.log(fileDatas[i]);
       console.log(data);
@@ -29,14 +39,26 @@ export default function Layer10(props) {
         const imageURL = `https://lh3.googleusercontent.com/d/${fileDatas[i].id}=w1024-h1024?authuser=0`;
         // const imageURL="https://drive.google.com/uc?id=1gmzbm7Towuy3-Pk0ET9WHSxwM-Trx3pv"
         console.log(imageURL);
-        const res = await fetch(imageURL, {
-          followRedirects: true,
-          muteHttpExceptions: true /* ,headers: {
-        'Authorization': 'Bearer ya29.a0ARrdaM-vzEjubuR0o57RLOAkh7G2QBx-ECX0jC0XTBLYsTu28QFFN1pypxJ2PJ07abFE5rT0hRYBJ0zdyXJGpIEFYGqBj74ia25NXSCIlUZHned1zBZ6WUD5tZp8JI3aDBsI6Qg7rGj0vz0OGdnzJTrGqNN-',
-      }, */,
-        });
-        const blob = await res.arrayBuffer();
-        var image_url=await Awsupload(blob, fileDatas[i].name, setProgress);
+        const resAxios = ""
+
+        await axios.get(imageURL,{
+          responseType: 'arraybuffer'
+        }).then((res)=>{
+          console.log(res.data)
+          resAxios=res.data
+        })
+        console.log("*********")
+        //const blob = await resAxios.arrayBuffer();
+        //console.log(blob)
+        var image_url=await Awsupload(resAxios, fileDatas[i].name, setProgress);
+        setUploadFile(i+1)
+        //uploadUrls.push(resUrl.Location)
+      await axios.post(`https://api.jewelify.ai/.netlify/functions/inventory?imageName=${fileDatas[i].name}`,{productImages:[image_url.Location]},{headers: {
+        Authorization:
+        session.authToken,
+      }}).then((res)=>{
+        console.log(res)
+      })
         resUrl.push(image_url.Location)
       } else {
         
@@ -51,9 +73,11 @@ export default function Layer10(props) {
 
   const onUpload = async () => {
     console.log(file);
+    var uploadUrls=[]
     if (file.length > 0) {
+      setTotalFile(file.length)
       for (let i = 0; i < file.length; i++) {
-        var converFile=''
+        var convertFile=''
         var type=file[i].type.split(".")
         await convert({ 
           file: file[i],  
@@ -62,15 +86,66 @@ export default function Layer10(props) {
           type: type[type.length-1]
           }).then(resp => {
               // Response contain compressed and resized file
-              converFile=resp
+              convertFile=resp
           }).catch(error => {
                // Error
           })
-        await Awsupload(converFile, file[i].name, setProgress);
+        var resUrl=await Awsupload(convertFile, file[i].name, setProgress);
+        setUploadFile(i+1)
+        console.log(i)
+        uploadUrls.push(resUrl.Location)
+      await axios.post(`https://api.jewelify.ai/.netlify/functions/inventory?imageName=${file[i].name}`,{productImages:[resUrl.Location]},{headers: {
+        Authorization:
+        session.authToken,
+      }}).then((res)=>{
+        console.log(res)
+      })
         if(i==file.length-1){
           setFinisUpload(true)
         }
       };
+      console.log(uploadUrls)
+      
+      setFile([]);
+
+    }
+  };
+
+  const onUploadDropzone = async (files) => {
+    //console.log(file);
+    var uploadUrls=[]
+    if (files.length > 0) {
+      setTotalFile(files.length)
+      for (let i = 0; i < files.length; i++) {
+        var convertFile=''
+        var type=files[i].type.split(".")
+        await convert({ 
+          file: files[i],  
+          width: 1024, 
+          height: 1024, 
+          type: type[type.length-1]
+          }).then(resp => {
+              // Response contain compressed and resized file
+              convertFile=resp
+          }).catch(error => {
+               // Error
+          })
+        var resUrl=await Awsupload(convertFile, files[i].name, setProgress);
+        setUploadFile(i+1)
+        console.log(i)
+        uploadUrls.push(resUrl.Location)
+      await axios.post(`https://api.jewelify.ai/.netlify/functions/inventory?imageName=${files[i].name}`,{productImages:[resUrl.Location]},{headers: {
+        Authorization:
+        session.authToken,
+      }}).then((res)=>{
+        console.log(res)
+      })
+        if(i==files.length-1){
+          setFinisUpload(true)
+        }
+      };
+      console.log(uploadUrls)
+      
       setFile([]);
 
     }
@@ -79,8 +154,8 @@ export default function Layer10(props) {
   const handleOpenPicker = () => {
     openPicker({
       clientId:
-        "988384303453-en9d8n6ugh02fo2pqrbosbgmp3hbphi2.apps.googleusercontent.com",
-      developerKey: "AIzaSyCZZSktjEyKDmDkr4z85PiEPbukEAbPnOI",
+        "196130488066-3ds1ukalbpui1fle5n2885psime32q3u.apps.googleusercontent.com",
+      developerKey: "AIzaSyBahE02UWYOO_w116czsXVJn6wPSixWMjk",
       viewId: "DOCS_IMAGES",
       // token: token, // pass oauth token in case you already have one
       showUploadView: false,
@@ -104,7 +179,13 @@ export default function Layer10(props) {
     setProgress(0);
     setFinisUpload(false)
     setmsg("successfuly uploaded");
-    setTimeout(() => setmsg(""), 5000);
+   
+    setTimeout(() => {setmsg(""); setUploadFile(0);
+    setTotalFile(0);
+    setDragDrop(false);
+    setmapImage(true);}, 500);
+    //router.push('/inventory')
+    
   }
   if(Uperr){
     setUperr(false)
@@ -113,316 +194,208 @@ export default function Layer10(props) {
   }
   return (
     <div>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <title>Jewelify</title>
-        <meta name="description" content />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
-      {/* Add your site or application content here */}
-      <header className="inner-header">
-        <nav className="main-nav">
-          <div className="container">
-            <div className="nav-wrapper">
-              <div className="logo-wrapper">
-                <a>
-                  {" "}
-                  <img src="/img/logo.svg" alt="jwelify" />{" "}
-                </a>
-              </div>
-              <p></p>
-              {session &&
-                  <div className="prof-img float-right">
-                  <img src={session.profilePicture?session.profilePicture:createImageFromInitials(500, session.id, '#1E90FF')} style={{width:"50px",  borderRadius: "50px"}} alt="" />
-                </div>}
+      
+      {dragDrop ? (
+        <>
+        <div className="div-block-305">
+          <div className="div-block-306-copy-2"  style={{overflow:'auto'}}>
+            <div className="div-block-307-copy" onClick={() => props.dispType('add products')}>
+              <img src="images/Group-731.svg" loading="lazy" alt="" />
             </div>
-          </div>
-        </nav>
-      </header>
-      <div className="wrapper ">
-        {/* pricing area
-      ============================================ */}
-        {dragDrop ? (
-          <>
-            <Dropzone
-              multiple={true}
-              onDrop={(acceptedFiles) => setFile(acceptedFiles)}
-            >
-              {({ getRootProps, getInputProps }) => (
-                <section>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-                    <div
-                      className="container mt-5"
-                      style={{
-                        width: "50%",
-                        border: "1px solid #000",
-                        padding: "20px",
-                      }}
-                    >
-                      <div className="row">
-                        <div className="col-md-12">
-                          <h3 style={{ fontWeight: "600" }}>
-                            Upload From Computer
-                          </h3>
-                          <p>Select a folder where the image is place</p>
-                        </div>
-
-                        <div className="col-md-12 mt-5">
-                          {/* File uploader */}
-                          <div
-                            className="iconAndFileType"
-                            style={{
-                              border: "1px solid #000",
-                              borderStyle: "dashed",
-                            }}
-                          >
-                            <div
-                              className="custom-file mb-4 text-center"
-                              style={{ backgoundColor: "#ffff" }}
-                            >
-                              <FontAwesomeIcon
-                                icon={faImage}
-                                style={{
-                                  fontSize: "100px",
-                                  padding: "35px 0 40px",
-                                }}
-                              />
-                              <div className="col-md-12">
-                                <h5 className="fw-bolder text-center">
-                                  Drop File here
-                                </h5>
-                                <p
-                                  className="text-center"
-                                  style={{ fontSize: "1rem" }}
-                                >
-                                  Supports JPG, JPEG2000, PNG
-                                </p>
-                              </div>
-                            </div>
-                            <div
-                              className="chooseFile"
-                              style={{ width: "100%", height: "100%" }}
-                            ></div>
-                          </div>
-                          <div
-                            className="col-md-12 mt-5"
-                            style={{
-                              border: "0px solid #000",
-                              padding: "20px",
-                            }}
-                          ></div>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              )}
-            </Dropzone>
-            <div className="text-center d-flex justify-content-center">
-                            
-            {progress != 0 && (
-                <>
-                  <div className="col-8 mt-5">
-                    <div
-                      className="progress-bar"
-                      role="progressbar"
-                      style={{ width: progress + "%", height: "3px" }}
-                      aria-valuenow="50"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                    {progress + "%"}
-                  </div>
-                </>
-              )}
-              {msg && (
-                <>
-                  <h3 className="text-success mt-5 col-8 h5">{msg}</h3>
-                </>
-              )}
-            </div>
-            <div className="text-center my-4 d-flex justify-content-center">
-              <div
-                className="btn-lg btn-primary col-3 text-center d-flex justify-content-center"
-                onClick={() => onUpload()}
-              >
-                upload
+            <div className="div-block-308-copy pb-5">
+              <h1 className="heading-147">Upload from Computer</h1>
+              <div className="text-block-29">
+                Select a folder where the image is place
               </div>
-              <div
-                className="btn-lg btn-danger col-3 text-center d-flex justify-content-center"
-                onClick={() => setDragDrop(false)}
-              >
-                close
-              </div>
-            </div>
-          </>
-        ) : (
-          <div
-            id="pricing-area"
-            className="pricing-area custom-border"
-            style={{ backgroundColor: "#f3fbfe" }}
+              <Dropzone
+            multiple={true}
+            onDrop={(acceptedFiles) => {onUploadDropzone(acceptedFiles)}}
           >
-            <div className="container pt-100">
-              <div className="row">
-                <div className="col-md-12 text-center">
-                  <div className="about-bottom-left mb-30 clearfix text-style">
-                    <h3>
-                      Next, Lets Set Up Your Product Photos. <br />
-                      How Do You Want To Upload Them?
-                    </h3>
-                  </div>
-                  <div className="row pb-100">
-                    <div className="col-12 text-center">
-                      <div className="g-card s-card">
-                        <div className="g-grid s-grid">
-                          <div
-                            className="up-grid"
-                            onClick={() => handleOpenPicker()}
-                          >
-                            <img src="/img/gdrive.png" alt="gdrive" />
-                            <p>Upload from Google Drive</p>
-                          </div>
-                          <div className="up-grid">
-                            <img src="/img/pdrive.png" alt="pdrive" />
-                            <p>Upload from USB connection</p>
-                          </div>
-                          <div
-                            className="up-grid"
-                            onClick={() => setDragDrop(true)}
-                          >
-                            <img src="/img/desktop.png" alt="desktop" />
-                            <p>Upload from Computer</p>
-                          </div>
-                        </div>
-                        {progress != 0 && (
-                          <>
-                            <div className="">
-                              <div
-                                className="progress-bar"
-                                role="progressbar"
-                                style={{ width: progress + "%", height: "3px" }}
-                                aria-valuenow="50"
-                                aria-valuemin="0"
-                                aria-valuemax="100"
-                              ></div>
-                              {progress + "%"}
-                            </div>
-                          </>
-                        )}
-                        {msg && (
-                          <>
-                            <p className="text-success h5">{msg}</p>
-                          </>
-                        )}
-                      </div>{" "}
-                      <br />
-                      <br />
-                      <button className="main-btn ">
-                        <a >GET STARTED</a>
-                      </button>
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                   <div className="container-fluid col-12">
+
+                    <img
+                src="images/Group-1000001977.png"
+                loading="lazy"
+                srcSet="images/Group-1000001977-p-500.png 500w, images/Group-1000001977-p-800.png 800w, images/Group-1000001977-p-1080.png 1080w, images/Group-1000001977.png 1220w"
+                sizes="(max-width: 479px) 84vw, (max-width: 767px) 85vw, (max-width: 991px) 86vw, (max-width: 1439px) 67vw, (max-width: 1919px) 68vw, 70vw"
+                alt=""
+                className="image-79"
+              />
                     </div>
-                  </div>
+                   
+                  
                 </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-      {/* contact area
-      ============================================ */}
-      <div className="contact-area">
-        <div className="container">
-          <div className="row">
-            <div className="conatct-info fix">
-              <div className="col-md-5 col-sm-4 text-style">
-                <h2>Jewelify</h2>
-                <p>
-                  Copyright © 2021
-                  <a href="http://bootexperts.com/" target="blank">
-                    Jewelify
-                  </a>
-                  <br />
-                  .All right reserved.
-                </p>
-              </div>
-              <div className="col-md-2 col-sm-4 footer-links text-style t-m-res">
-                <h3 className="mb-30">Services</h3>
-                <ul>
-                  <li>
-                    <a >service - 1</a>
-                  </li>
-                  <li>
-                    <a >service - 2</a>
-                  </li>
-                  <li>
-                    <a >service - 3</a>
-                  </li>
-                  <li>
-                    <a >service - 4</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-2 col-sm-4 footer-links text-style t-m-res">
-                <h3 className="mb-30">Company</h3>
-                <ul>
-                  <li>
-                    {" "}
-                    <a >Work</a>
-                  </li>
-                  <li>
-                    <a >About</a>
-                  </li>
-                  <li>
-                    <a >Resources</a>
-                  </li>
-                  <li>
-                    <a >Pricing</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-md-3 col-sm-4 text-style t-m-res">
-                <h3 className="mb-30">Useful Links</h3>
-                <div className="footer-icon">
-                  <ul>
-                    <li>
-                      <a>
-                        <img src="/img/facebook.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                    <li>
-                      <a>
-                        <img src="/img/instagram.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                    <li>
-                      <a>
-                        <img src="/img/twitter.svg" alt="" width="20px" />
-                      </a>{" "}
-                    </li>
-                  </ul>
-                </div>
+              </section>
+            )}
+          </Dropzone>
+          
+              <div className="">
+              <div className="text-center row d-flex justify-content-center">
+                          
+                          {progress != 0 && (
+                              <>
+                                <div className="row bg-blue align-items-center col-10">
+                        <div className="progress my-5" style={{ width: '90%',height:'3px' }}>
+                          <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`,height:'3px' }} aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    <div className='ml-5 mx-md-2 d-flex align-items-center justify-content-center btn my-5' style={{ background: '#FFDCD8', borderRadius: '100%', width: '2.5em', height: '2.5em' }} onClick={() => CancelUploadToFireBase(index)}><img src="/images/close-icon.png" alt="" width='auto' /></div>
+                  
+                        </div>
+                      
+                              </>
+                            )}
+                            {totalFile>0 && (
+                              <>
+                                <h5 className="text-success font-weight-bold text-center mt-5 row col-6">{uploadedFile}/{totalFile}</h5>
+                              </>
+                            )}
+                            {msg && (
+                              <>
+                                <h3 className="text-success mt-5 col-8 h5">{msg}</h3>
+                              </>
+                            )}
+                          </div>
               </div>
             </div>
           </div>
         </div>
+        
+        <div className="div-block-343">
+        <div className="div-block-29">
+                <div className="div-block-30">
+                  <h1 className="heading-36" style={{marginBottom:'0px'}}>Next, Lets Set Up Your Product Photos. How Do You Want To Upload Them?</h1>
+                  <div className="div-block-31">
+                    <button className="link-block-4 w-inline-block" onClick={() => handleOpenPicker()}><img src="images/Group-727.png" loading="lazy" alt="" className="image-16" />
+                      <h1 className="heading-37">Upload from Google Drive</h1>
+                    </button>
+                    <button data-w-id="ae86e838-33ed-3333-0a4f-1067d3597c00" className="link-block-4 w-inline-block" onClick={() => setDragDrop(true)}><img src="images/Group_1.png" loading="lazy" alt="" className="image-17" />
+                      <h1 className="heading-37">Upload from USB connection</h1>
+                    </button>
+                    <button data-w-id="ae86e838-33ed-3333-0a4f-1067d3597c04" className="link-block-4 w-inline-block" onClick={() => setDragDrop(true)}><img src="images/Group-1.png" loading="lazy" alt="" className="image-18" />
+                      <h1 className="heading-37">Upload from Computer</h1>
+                    </button>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+        </>
+       
+      ) :mapImage
+      ?
+      <div className='div-block-10 aaaa'>
+        <div className="wrap-upload-popup col-10">
+      <div className="div-block-308 white " >
+        <button
+          onClick={() => setmapImage(false)}
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <img
+            src="images/Vector-1.svg"
+            loading="lazy"
+            data-w-id="fbecfd21-e3d0-0374-acf5-5fbf7d3aefaa"
+            alt=""
+            className="image-13"
+          />
+        </button>
+        <div className="text-center" >
+          <h1 className="">How Did You Name Your Images</h1>
+          <p className="mb-5">
+            the name should match a field from your uploaded CSV
+          </p>
+
+          <div className="mt-5 pt-5" style={{ height: "40vh",overflowY:'scroll' }}>
+            <div className="form-block-3 w-form">
+              
+                <div className="row justify-content-center">
+                 <div className="col-6">
+                                  <select
+                                  className="form-select py-3 form-select-lg"
+                                  maxLength={256}
+                                  style={{fontSize:'20px'}}
+                                >
+                                  <option value="" selected disabled style={{fontSize:'20px'}}>
+                                  select the naming type
+                                  </option>
+                                  <option value="" style={{fontSize:'20px'}} >
+                                    sku_imageNo
+                                  </option>
+                                  <option value="" style={{fontSize:'20px'}} >
+                                    styleNumber_imageNo
+                                  </option>
+                                
+                                </select>
+                                </div>
+                               
+                 
+                </div>
+            </div>
+          </div>
+          <div className="d-flex justify-content-center">
+          <div className="div-block-332-copy justify-content-center">
+                  <button
+                className="py-4 field-label-11 text-light text-center "
+                style={{
+                  width: "100%",
+                  backgroundColor: "#007ADF",
+                  borderRadius: "40px",
+                  
+                }}
+                onClick={() => props.dispType('add products')}
+              >
+                next
+              </button>
+                </div>
+          </div>
+          
+        </div>
       </div>
-      {/* start scrollUp
-      ============================================ */}
-      {/*<div id="toTop">
-          <i class="fa fa-chevron-up"></i>
-      </div>
-  </div>*/}
-      {/* jquery
-		============================================ */}
-      {/* bootstrap JS
-		============================================ */}
-      {/* plugins JS
-		============================================ */}
-      {/* main JS
-		============================================ */}
+    </div>
+    </div>
+    :
+    <div className='div-block-10 aaaa'>
+        <div className="wrap-upload-popup col-10"  style={{height:'90%',overflow:'scroll' }}>
+      <div className="div-block-308 white " >
+        <button
+          onClick={() => props.dispType('add products')}
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <img
+            src="images/Vector-1.svg"
+            loading="lazy"
+            data-w-id="fbecfd21-e3d0-0374-acf5-5fbf7d3aefaa"
+            alt=""
+            className="image-13"
+          />
+        </button>
+     
+        <div className="div-block-29">
+                <div className="div-block-30" style={{paddingTop:'0px',height:'auto'}}>
+                  <h1 className="heading-36" style={{marginBottom:'0px'}}>Next, Lets Set Up Your Product Photos. How Do You Want To Upload Them?</h1>
+                  <div className="div-block-31">
+                    <button className="link-block-4 w-inline-block" onClick={() => handleOpenPicker()}><img src="images/Group-727.png" loading="lazy" alt="" className="image-16" />
+                      <h1 className="heading-37">Upload from Google Drive</h1>
+                    </button>
+                    <button data-w-id="ae86e838-33ed-3333-0a4f-1067d3597c00" className="link-block-4 w-inline-block" onClick={() => setDragDrop(true)}><img src="images/Group_1.png" loading="lazy" alt="" className="image-17" />
+                      <h1 className="heading-37">Upload from USB connection</h1>
+                    </button>
+                    <button data-w-id="ae86e838-33ed-3333-0a4f-1067d3597c04" className="link-block-4 w-inline-block" onClick={() => setDragDrop(true)}><img src="images/Group-1.png" loading="lazy" alt="" className="image-18" />
+                      <h1 className="heading-37">Upload from Computer</h1>
+                    </button>
+                  </div>
+                </div>
+              </div>
+        
+        </div>
+        </div>
+        </div>
+      }
     </div>
   );
 }

@@ -1,37 +1,29 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/no-html-link-for-pages */
-import Head from "next/head";
 import React, { useCallback, useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import Link from "next/link";
 import axios from "axios";
-import InventoryMap from "./inventoryMap";
-import AddInventory from "./addInventory";
+import InventoryMapSync from "./inventorymapSync";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useRouter } from "next/router";
-import Loading from "./inventory-loading";
-import InventoryMapEcom from "./eComOnlyMap";
+import InvenLoadingSync from "../loadingPages/sync-inventory-loading";
 
-
-export default function Online({ invenData, addInv}) {
+export default function ProductSync({ ecomType,dispType}) {
   const { data: session, status } = useSession();
   const [showAtt, setshowAtt] = useState(false);
  /*  const [addFilter, setAddFilter] = useState(false);
   const [addProduct, setAddProduct] = useState(false); */
   const [att, setAtt] = useState("");
+  const [progress, setProgress] = useState(0);
   const [msg, setmsg] = useState("");
-  const [totalProduct, setTotalProduct] = useState(0);
-  const [totalWooCom, setTotalWooCom] = useState(0);
-  const [totalEbay, setTotalEbay] = useState(0);
-  const [totalShopify, setTotalShopify] = useState(0);
-  const [totalAmazon, setTotalAmazon] = useState(0);
   const [alljewelrtTypes, setalljewelrtTypes] = useState([]);
   const [pageloading, setPageLoding] = useState(true);
   const [tableloading, setTableLoding] = useState(true);
-  const [Disptype, setDispType] = useState("ADD PRODUCT");
   const [companies, setCompanies] = useState(["shopify", "woo-commerce"]);
-  const [dispWooOnly,setDispWooOnly]=useState(false)
-  const [dispShopifyOnly,setDispShopifyOnly]=useState(false)
-  const percentage=69
+  const [selected, setSelected] = useState([]);
+  const [showConfirm, setshowConfirm] = useState(false);
+  const[loading,setLoding]=useState(false)
+  //console.log(selected)
 
   const [filterData, setFiterData] = useState({
     minPrice: "",
@@ -52,50 +44,80 @@ export default function Online({ invenData, addInv}) {
   const router =useRouter()
 
   useEffect(() => {
+    if(data.length==0){
     setTableLoding(true)
-    fetchDataFilter()
+    localStorage.setItem("redirect", "/");
+      
+      /* router.push('/inventory','/inventory?page=online',{shallo:true}) */
+      if (status != "loading" && !session) {
+        localStorage.setItem("redirect", "/e-commerce");
+        router.push("/sign-in");
+      } else if (status == "authenticated") {
+        fetchDataFilter()
+      }
+  }
     //setTableLoding(false);
     
     
   }, [session])
 
 
-  if (msg != "") {
-    setTimeout(() => setmsg(""), 5000);
+  if (msg != "" && !loading) {
+    setTimeout(() => {
+      setmsg("");
+      router.push('/inventory')
+  }, 1500);
   }
+
+  const inventorySync = async (sku) => {
+    setLoding(true);
+    for(let i=0;i<sku.length;i++){
+      try {
+        await axios
+          .post(
+            `https://api.jewelify.ai/.netlify/functions/woo-commerce?sku=${sku[i]}`,
+            {},
+            {
+              headers: {
+                Authorization: session.authToken,
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res.data)
+            setmsg(
+              res.data.message ? res.data.message : res.data.products.message
+            );
+            setProgress(i*100/(sku.length+1))
+            console.log(progress);
+
+          });
+      } catch (err) {
+        console.log(err);
+        setmsg("failed");
+        setProgress(i*100/(sku.length+1))
+            console.log(progress);
+        //setLoding(false);
+      }
+    }
+    
+    setLoding(false);
+    
+  };
 
   const mapProduct = () => {
     if (data.length > 0) {
       return data.map((item, key) => {
-        if(dispWooOnly){
-          return (
-          <InventoryMapEcom
+        return (
+          <InventoryMapSync
             product={item}
             key={key}
             setInv={(val) => {
               setData(val);
             }}
-            ecom={"woo-commerce"}
-          />
-          )
-        }if(dispShopifyOnly){
-          return (
-          <InventoryMapEcom
-            product={item}
-            key={key}
-            setInv={(val) => {
-              setData(val);
-            }}
-            ecom={"shopify"}
-          />
-          )
-        }return (
-          <InventoryMap
-            product={item}
-            key={key}
-            setInv={(val) => {
-              setData(val);
-            }}
+            selected={(arr)=>setSelected(arr)}
+            currentVal={selected}
+            showConfirm={(a)=>setshowConfirm(a)}
           />
         );
       });
@@ -103,66 +125,12 @@ export default function Online({ invenData, addInv}) {
     return null;
   };
 
-
-  const mapAddProduct = () => {
-    if (session) {
-      return (
-        <AddInventory
-          msg={(val) => {
-            setmsg(val);
-          }}
-          setInv={(val) => {
-            setData(val);
-          }}
-        />
-      );
-    }
-    return null;
-  };
-
-  const fetchData = () => {
-
-    if (invenData.data) {
-      var inven = invenData;
-      //console.log(inven);
-      setData(inven.data);
-
-      var wooCount = 0;
-      var shopifyCount = 0;
-      var alljewTypes = [];
-      if (inven.data.length > 0) {
-        setTableLoding(true)
-        for (let i = 0; i < inven.data.length; i++) {
-          //console.log(inven.data[i].id)
-          if (inven.data[i].id != "" && inven.data[i].id) {
-            wooCount = wooCount + 1;
-          }
-          if (inven.data[i].shopify_id != "" && inven.data[i].shopify_id) {
-            shopifyCount = shopifyCount + 1;
-          }
-          if (
-            !alljewTypes.includes(inven.data[i].jewelryType) &&
-            inven.data[i].jewelryType != ""
-          ) {
-            alljewTypes.push(inven.data[i].jewelryType);
-          }
-        }
-      }
-      setalljewelrtTypes(alljewTypes);
-      setTotalWooCom(wooCount);
-      setTotalShopify(shopifyCount);
-      setTotalProduct(inven.data.length ? inven.data.length : 0);
-      setTableLoding(false)
-      //setTableLoding(false);
-    }
-  };
-
   const fetchDataFilter = async () => {
     setTableLoding(true);
     session &&
       (await axios
         .get(
-          `https://api.jewelify.ai/.netlify/functions/inventory?minPrice=${filterData.minPrice}&maxPrice=${filterData.maxPrice}&minQty=${filterData.minQty}&maxQty=${filterData.maxQty}&platform=${filterData.platform}&keyWord=${filterData.keyWord}&jewelryType=${filterData.jewelryType}`,
+          `https://api.jewelify.ai/.netlify/functions/inventory?minPrice=${filterData.minPrice}&maxPrice=${filterData.maxPrice}&minQty=${filterData.minQty}&maxQty=${filterData.maxQty}&platform=${filterData.platform}&keyWord=${filterData.keyWord}&jewelryType=${filterData.jewelryType}&sync=${ecomType}`,
           {
             headers: {
               Authorization: session.authToken,
@@ -181,7 +149,7 @@ export default function Online({ invenData, addInv}) {
               setTableLoding(true);
               for (let i = 0; i < inven.data.length; i++) {
                 //console.log(inven.data[i].id)
-               
+                
               //console.log(inven.data[i].id)
               
                 if (inven.data[i].id != "" && inven.data[i].id) {
@@ -196,65 +164,10 @@ export default function Online({ invenData, addInv}) {
                 
               }
             }
-
-            setTotalWooCom(wooCount);
-            setTotalShopify(shopifyCount);
-            setTotalProduct(inven.data.length ? inven.data.length : 0);
             setTableLoding(false);
           },
           (err) => {
-            //console.log(err);
-          }
-        ));
-  };
-
-  const fetchDataEcoomerce = async (ecom) => {
-    setTableLoding(true);
-    session &&
-      (await axios
-        .get(
-          `https://api.jewelify.ai/.netlify/functions/inventory?platform=${ecom}`,
-          {
-            headers: {
-              Authorization: session.authToken,
-            },
-          }
-        )
-        .then(
-          (inven) => {
-            //console.log(inven);
-            setData(inven.data);
-            //console.log(inven.data.length)
-            var wooCount = 0;
-            var shopifyCount = 0;
-
-            if (inven.data.length > 0) {
-              setTableLoding(true);
-              for (let i = 0; i < inven.data.length; i++) {
-                //console.log(inven.data[i].id)
-               
-              //console.log(inven.data[i].id)
-              
-                if (inven.data[i].id != "" && inven.data[i].id) {
-                  wooCount = wooCount + 1;
-                }
-                if (
-                  inven.data[i].shopify_id != "" &&
-                  inven.data[i].shopify_id
-                ) {
-                  shopifyCount = shopifyCount + 1;
-                }
-                
-              }
-            }
-
-            setTotalWooCom(wooCount);
-            setTotalShopify(shopifyCount);
-            setTotalProduct(inven.data.length ? inven.data.length : 0);
-            setTableLoding(false);
-          },
-          (err) => {
-            //console.log(err);
+            console.log(err);
           }
         ));
   };
@@ -279,92 +192,35 @@ export default function Online({ invenData, addInv}) {
   return (
     <>
     {(tableloading)? (
-      <Loading />) :
-    <div className="">
+    
+      <div className='div-block-10 aaaa'>
+          <div className="wrap-upload-popup col-10" style={{width:'80%',overflow:'auto',height: "90%" }}>
+          <InvenLoadingSync dispType={(val)=>dispType(val)}/>
+          </div>
+          </div>
+      ) :
+      <>
+          <div className='div-block-10 aaaa'>
+          <div className="wrap-upload-popup col-10 px-3" style={{width:'80%',overflow:'auto',height: "90%",backgroundColor:'#F4FBFF' }}>
+          <div className="div-block-308 ">
+              <button
+                onClick={() => dispType("CONNECT")}
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                className="pb-4"
+              >
+                <img
+                  src="images/Vector-1.svg"
+                  loading="lazy"
+                  data-w-id="fbecfd21-e3d0-0374-acf5-5fbf7d3aefaa"
+                  alt=""
+                  className="image-13"
+                />
+              </button>
+              <h1 className="">What product Do You Want to Sell On {ecomType}</h1>
+              <div className="pt-3">
                 
-                <div
-                  className="row d-flex justify-content-between my-3 p-3"
-                  style={{ backgroundColor: "#E3F2FF",overflow:'scroll',flexWrap:"initial" }}
-                >
-                  <div className="col-3 row">
-                    <div
-                      className="col-4 d-flex align-items-center"
-                      style={{
-                        backgroundColor: "#ffff",
-                        borderRadius: "500px",
-                      }}
-                      onClick={()=>{
-                        fetchDataEcoomerce('woo-commerce')
-                      setDispShopifyOnly(false)
-                    setDispWooOnly(true)}}
-                    >
-                      <img src="/img/s1.png" alt="gdrive" />
-                    </div>
-                    <div className="col-8">
-                      <p className="text-center">products synced</p>
-                      <h2 className="text-center font-weight-bold">
-                        {totalWooCom}
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="col-3 row">
-                    <div
-                      className="col-4 d-flex align-items-center"
-                      style={{
-                        backgroundColor: "#ffff",
-                        borderRadius: "500px",
-                      }}
-                    >
-                      <img src="/img/s4.png" alt="gdrive" />
-                    </div>
-                    <div className="col-8">
-                      <p className="text-center">products synced</p>
-                      <h2 className="text-center font-weight-bold">
-                        {totalEbay}
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="col-3 row">
-                    <div
-                      className="col-4 d-flex align-items-center"
-                      style={{
-                        backgroundColor: "#ffff",
-                        borderRadius: "500px",
-                      }}
-                      onClick={()=>{
-                        fetchDataEcoomerce('shopify')
-                        setDispWooOnly(false)
-                        setDispShopifyOnly(true)
-                        }}
-                    >
-                      <img src="/img/s2.png" alt="gdrive" />
-                    </div>
-                    <div className="col-8">
-                      <p className="text-center">products synced</p>
-                      <h2 className="text-center font-weight-bold">
-                        {totalShopify}
-                      </h2>
-                    </div>
-                  </div>
-                  <div className="col-3 row">
-                    <div
-                      className="col-4 d-flex align-items-center"
-                      style={{
-                        backgroundColor: "#ffff",
-                        borderRadius: "500px",
-                      }}
-                    >
-                      <img src="/img/s5.png" alt="gdrive" />
-                    </div>
-                    <div className="col-8">
-                      <p className="text-center">products synced</p>
-                      <h2 className="text-center font-weight-bold">
-                        {totalAmazon}
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div className="div-block-12 bg-white m-0">
+                <div className="div-block-12 bg-white px-5">
                   <div className="div-block-14">
                     <h1 className="heading-29">Search by Keyword</h1>
                     <form className="search w-form">
@@ -570,12 +426,14 @@ export default function Online({ invenData, addInv}) {
                     </div>
                   </div>
                 </div>
-                <div className="w-embed" >
-                  
-                  <div className="table-wrap" style={{zIndex:2}}> 
-                      <table className="table-1" >
-                        <thead style={{ textAlign: "center",}}>
+                <div className="w-embed">
+                  <div className="table-wrap" style={{height:'auto',maxHeight:'200px'}}> 
+                      <table className="table-1">
+                        <thead style={{ textAlign: "center" }}>
                           <tr>
+                          <th scope="col" className="p-3">
+                              #check
+                            </th>
                             <th scope="col" className="p-3">
                               Category
                             </th>
@@ -740,8 +598,7 @@ export default function Online({ invenData, addInv}) {
                             </th>
                           </tr>
                         </thead>
-                        <tbody style={{zIndex:0}}>
-                          {addInv && mapAddProduct()}
+                        <tbody>
                           {mapProduct()}
                         </tbody>
                        
@@ -749,7 +606,6 @@ export default function Online({ invenData, addInv}) {
                       </table>
                     
                   </div>
-                  
                   <style
                     dangerouslySetInnerHTML={{
                       __html:
@@ -757,13 +613,34 @@ export default function Online({ invenData, addInv}) {
                     }}
                   />
                 </div>
-                <div className="div-block-278">
-                  <a  className="button-8 w-button">
-                    CONFIRM
+                <div className="div-block-278" onClick={()=>inventorySync(selected)}>
+                  <a className="button-8 w-button mt-3" style={{padding:0,margin:0}}>
+                  {loading ? (
+                            <div className=" d-flex justify-content-center">
+                              <div className="spinner-border" role="status">
+                                <span className="sr-only">Loading...</span>
+                              </div>
+                            </div>
+                          ) :"CONFIRM"}
                   </a>
                 </div>
+                {/* {loading && (
+                              <>
+                                <div className="row align-items-center justify-content-center col-12">
+                        <div className="progress my-5" style={{ width: '90%',height:'3px' }}>
+                          <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`,height:'3px' }} aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        </div>
+                              </>
+                            )} */}
+                            {msg && <p className="text-danger">{msg}</p>}
                 <div className="w-embed w-script"></div>
               </div>
+            </div>
+          </div>
+          </div>
+        
+    </>
               }
               </>
   );

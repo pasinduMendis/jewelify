@@ -7,20 +7,23 @@ export default function SignIn({ csrfToken, providers }) {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   const [errMsg, seterrMsg] = useState('')
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const userSignIn = async (e) => {
     e.preventDefault()
     //console.log({email:email,password:password})
+    setLoading(true)
     const options = { redirect: false, email, password }
     const result = await signIn('credentials', options)
     //console.log(result)
     if (result?.error) {
       seterrMsg(result.error)
+    setLoading(false)
       return
     }
     return router.push(
-      localStorage.getItem('redirect') ? localStorage.getItem('redirect') : '/'
+      localStorage.getItem('redirect') !='/' ? localStorage.getItem('redirect') :'/pricing'
     )
   }
 
@@ -68,13 +71,13 @@ export default function SignIn({ csrfToken, providers }) {
                               <div className='form-group'>
                                 <label style={{ fontSize: 13 }}>Email</label>
                                 <input
-                                  type='text'
-                                  className='form-control'
+                                  type='email'
+                                  className={errMsg?'form-control is-invalid':'form-control'}
                                   style={{
-                                    backgroundColor: '#F8FBFD',
+                                    backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
                                     fontSize: 13,
                                   }}
-                                  placeholder='Enter Your Email Address'
+                                  placeholder='&#xF002; Enter Your Email Address'
                                   required
                                   value={email}
                                   onChange={(e) => {
@@ -85,10 +88,10 @@ export default function SignIn({ csrfToken, providers }) {
                               <div className='form-group'>
                                 <label style={{ fontSize: 13 }}>Password</label>
                                 <input
-                                  className='form-control'
+                                  className={errMsg?'form-control is-invalid':'form-control'}
                                   type='password'
                                   style={{
-                                    backgroundColor: '#F8FBFD',
+                                    backgroundColor: `${errMsg?'#ffcbd1':'#F8FBFD'}`,
                                     fontSize: 13,
                                   }}
                                   placeholder='Enter Your Password'
@@ -116,14 +119,21 @@ export default function SignIn({ csrfToken, providers }) {
                                     userSignIn(e)
                                   }}
                                 >
-                                  <img
+                                  <>
+                                  {!loading && <img
                                     src='./img/Email.png'
                                     width='20px'
                                     height='20px'
-                                  ></img>
+                                  ></img>}
                                   <b style={{ fontSize: 11, color: '#131313' }}>
-                                    Sign In with credentials
+                                    {loading?<div className=" d-flex justify-content-center">
+                            <div className="spinner-border" role="status">
+                              <span className="sr-only">Loading...</span>
+                            </div>
+                          </div>:"Sign In with credentials"}
                                   </b>
+                                  </>
+                                  
                                 </button>
                               </div>
                               <br />

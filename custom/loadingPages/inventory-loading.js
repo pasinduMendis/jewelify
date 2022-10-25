@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import ProgressBar from 'react-bootstrap/ProgressBar'
+
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function InvenLoading() {
   return (
     <>
-      <div className='px-5' style={{ width: '100%' }}>
+      <div className='px-5 ' style={{ width: '100%' }}>
         <div
           className='row d-flex justify-content-between my-3 p-3'
           style={{ backgroundColor: '#E3F2FF' }}
@@ -15,49 +17,54 @@ export default function InvenLoading() {
               
             >
              <div
-                  className="spinner-grow text-secondary"
-                  role="status"
-                  style={{ width: "70px", height: "70px",backgroundColor:'#CFDEEA' }}
+                
                 >
-                  <span className="sr-only">Loading...</span>
+                  <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
                 </div>
             </div>
             <div className='col-8 align-items-center '>
-              <p className='mt-4'>
+              <p className='mt-4 mb-4'>
               <h2
-                        className="spinner-grow text-secondary"
+                        className="text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                        style={{ width: "auto", height: "0px"}}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
               </p>
               <h2
-                        className="text-center  spinner-grow text-secondary"
+                        className=" Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             height: "20px",
-                            borderRadius: "50px",
+                            borderRadius: "70px",
                             width: "40px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -69,49 +76,54 @@ export default function InvenLoading() {
               
             >
              <div
-                  className="spinner-grow text-secondary"
-                  role="status"
-                  style={{ width: "70px", height: "70px",backgroundColor:'#CFDEEA' }}
+                
                 >
-                  <span className="sr-only">Loading...</span>
+                  <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
                 </div>
             </div>
             <div className='col-8 align-items-center '>
-              <p className='mt-4'>
+              <p className='mt-4 mb-4'>
               <h2
-                        className="spinner-grow text-secondary"
+                        className="text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                        style={{ width: "auto", height: "0px"}}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
               </p>
               <h2
-                        className="text-center  spinner-grow text-secondary"
+                        className=" Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             height: "20px",
-                            borderRadius: "50px",
+                            borderRadius: "70px",
                             width: "40px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -123,49 +135,56 @@ export default function InvenLoading() {
               
             >
              <div
-                  className="spinner-grow text-secondary"
-                  role="status"
-                  style={{ width: "70px", height: "70px",backgroundColor:'#CFDEEA' }}
+                
                 >
-                  <span className="sr-only">Loading...</span>
+                  <Skeleton 
+                            baseColor='#CFDEEA'
+                            circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                            
+                          }}/>
                 </div>
             </div>
             <div className='col-8 align-items-center '>
-              <p className='mt-4'>
+              <p className='mt-4 mb-4'>
               <h2
-                        className="spinner-grow text-secondary"
+                        className="text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                        style={{ width: "auto", height: "0px"}}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
               </p>
               <h2
-                        className="text-center  spinner-grow text-secondary"
+                        className=" Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             height: "20px",
-                            borderRadius: "50px",
+                            borderRadius: "70px",
                             width: "40px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -177,77 +196,74 @@ export default function InvenLoading() {
               
             >
              <div
-                  className="spinner-grow text-secondary"
-                  role="status"
-                  style={{ width: "70px", height: "70px",backgroundColor:'#CFDEEA' }}
+                
                 >
-                  <span className="sr-only">Loading...</span>
+                  <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
                 </div>
             </div>
             <div className='col-8 align-items-center '>
-              <p className='mt-4'>
+              <p className='mt-4 mb-4'>
               <h2
-                        className="spinner-grow text-secondary"
+                        className="text-secondary"
                         role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                        style={{ width: "auto", height: "0px"}}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
               </p>
               <h2
-                        className="text-center  spinner-grow text-secondary"
+                        className=" Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             height: "20px",
-                            borderRadius: "50px",
+                            borderRadius: "70px",
                             width: "40px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
             </div>
           </div>
         </div>
-        <div className='div-block-12 bg-white m-0'>
-          <div className='div-block-14'>
-            
-            <form className='search w-form'>
-              <label className='mt-4'>
-                <div
-                        className="spinner-grow text-secondary mt-2"
-                        role="status"
-                        style={{ width: "auto", height: "0px" }}
-                      >
-                        <ProgressBar
-                          variant="primary"
+        <div className='div-block-12 bg-white'>
+          <div className='div-block-14  mt-3'>
+          <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "20px",
                             borderRadius: "50px",
                             width: "200px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      </div>
+                            backgroundColor:''
+                          }}/>
+            <form className='search w-form'>
+              <label className=''>
+                
               </label>
               
               
@@ -345,20 +361,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                       <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -367,20 +384,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -389,20 +407,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -411,20 +430,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -433,20 +453,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -455,20 +476,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -477,20 +499,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -499,20 +522,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -521,20 +545,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -542,7 +567,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -557,7 +583,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -572,7 +599,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -587,7 +615,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -602,7 +631,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -617,7 +647,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -632,7 +663,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -647,327 +679,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                      <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -985,20 +698,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                       <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1007,20 +721,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1029,20 +744,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1051,20 +767,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1073,20 +790,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1095,20 +813,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1117,20 +836,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1139,20 +859,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1161,20 +882,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1182,7 +904,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1197,7 +920,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1212,7 +936,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1227,7 +952,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1242,7 +968,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1257,7 +984,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1272,7 +1000,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1287,327 +1016,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                  </tr>
-                  <tr>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                      <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <h2
-                        className="spinner-grow text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <ProgressBar
-                          variant="primary"
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:'#CFDEEA'
-                          }}
-                          className="align-self-center "
-                          now={0}
-                        />
-                      
-              </h2>
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
-                          style={{
-                            backgroundColor: '	#B6D0E2',
-                            height: '10px',
-                            width: '50px',
-                            borderRadius: '50px',
-                          }}
-                          className='col-2'
-                          variant='#89CFF0'
-                          now={100}
-                        />
-                      </div>
-                    </th>
-                    <th scope='col' className='p-3'>
-                      <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1625,20 +1035,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                       <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1647,20 +1058,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1669,20 +1081,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1691,20 +1104,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1713,20 +1127,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1735,20 +1150,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1757,20 +1173,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1779,20 +1196,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1801,20 +1219,21 @@ export default function InvenLoading() {
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
                         <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
                             width: "100px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>
@@ -1822,7 +1241,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1837,7 +1257,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1852,7 +1273,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1867,7 +1289,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1882,7 +1305,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1897,7 +1321,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1912,7 +1337,8 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1927,7 +1353,682 @@ export default function InvenLoading() {
                     </th>
                     <th scope='col' className='p-3'>
                       <div className='mt-4 '>
-                        <ProgressBar
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                      <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                  </tr>
+                  <tr>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                      <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <h2
+                        className="Skeleton text-secondary"
+                        role="status"
+                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
+                      >
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
+                          style={{
+                            height: "10px",
+                            borderRadius: "50px",
+                            width: "100px",
+                            backgroundColor:''
+                          }}
+                         
+                          
+                        />
+                      
+              </h2>
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          style={{
+                            backgroundColor: '	#B6D0E2',
+                            height: '10px',
+                            width: '50px',
+                            borderRadius: '50px',
+                          }}
+                          className='col-2'
+                          variant='#89CFF0'
+                          now={100}
+                        />
+                      </div>
+                    </th>
+                    <th scope='col' className='p-3'>
+                      <div className='mt-4 '>
+                        <Skeleton 
+                            baseColor='#CFDEEA'
                           style={{
                             backgroundColor: '	#B6D0E2',
                             height: '10px',
@@ -1953,20 +2054,21 @@ export default function InvenLoading() {
           </div>
           <div className='mt-5 d-flex justify-content-center'>
           <h2
-                        className="spinner-grow text-secondary"
+                        className="Skeleton text-secondary"
                         role="status"
                         style={{ width: "auto", height: "0px",margin:0,padding:0 }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                            baseColor='#CFDEEA'
+                          
                           style={{
                             height: "20px",
                             borderRadius: "50px",
                             width: "200px",
-                            backgroundColor:'#CFDEEA'
+                            backgroundColor:''
                           }}
-                          className="align-self-center "
-                          now={0}
+                         
+                          
                         />
                       
               </h2>

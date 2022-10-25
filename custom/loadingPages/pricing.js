@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
-import ProgressBar from 'react-bootstrap/ProgressBar';
-import Spinner from 'react-bootstrap/Spinner';
+
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function PricingLoading() {
   
@@ -35,15 +36,21 @@ export default function PricingLoading() {
                      
 
                       <div
-                  className="spinner-grow text-center"
+                  className="text-center"
                   role="status"
                   style={{
                     width: "50px",
                     height: "50px",
-                    backgroundColor: "#CFDEEA",
+                    
                   }}
                 >
-                  <span className="sr-only">Loading...</span>
+                 <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
                 </div>
                     </>
                   
@@ -54,78 +61,82 @@ export default function PricingLoading() {
                   className="wrap-pricing lll"
                   style={{ backgroundColor: "#F4FBFF",width:'100%' }}
                 >
-                  <div className="div-block-9"  style={{ width: "100%" }}>
-                    <div className="heading-pricing"><div
-                        className="spinner-grow text-center"
+                  <div className="div-block-9"  style={{ width: "100%",paddingTop:'20px' }}>
+                    <div className="heading-pricing" style={{ marginTop: "0px",padding:0 }}><div
+                        className="text-center mb-3"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "20px",
                             borderRadius: "50px",
                             width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></div>
 
                     <div className="div-block-313"  style={{ width: "100%" }}>
-                      <div className="card-1-111">
+                      <div className="card-1-111 col-3">
                         <div className="wrap-card">
                           <h1 className="heading-card1"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <h1 className="heading-14"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <p className="paragraph-4">
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                           </p>
@@ -134,35 +145,34 @@ export default function PricingLoading() {
                             
                         </div>
                         <div className='text-center'>
-                        <div
-                  className="spinner-grow text-center"
-                  role="status"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    backgroundColor: "#CFDEEA",
-                  }}
-                >
-                  <span className="sr-only">Loading...</span>
-                </div>
+                       
+                 <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
+               
           </div>
                         <div className="wrap2-card mt-5">
                           
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                         </div>
@@ -170,55 +180,58 @@ export default function PricingLoading() {
                       <div className="card-1-111">
                         <div className="wrap-card">
                           <h1 className="heading-card1"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <h1 className="heading-14"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <p className="paragraph-4">
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                           </p>
@@ -227,35 +240,34 @@ export default function PricingLoading() {
                             
                         </div>
                         <div className='text-center'>
-                      <div
-                  className="spinner-grow text-center"
-                  role="status"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    backgroundColor: "#CFDEEA",
-                  }}
-                >
-                  <span className="sr-only">Loading...</span>
-                </div>
+                      
+                 <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
+                
           </div>
                         <div className="wrap2-card mt-5">
                           
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                         </div>
@@ -263,55 +275,58 @@ export default function PricingLoading() {
                       <div className="card-1-111">
                         <div className="wrap-card">
                           <h1 className="heading-card1"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <h1 className="heading-14"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <p className="paragraph-4">
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                           </p>
@@ -320,36 +335,35 @@ export default function PricingLoading() {
                             
                         </div>
                         <div className='text-center'>
-                      <div
-                  className="spinner-grow text-center"
-                  role="status"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    backgroundColor: "#CFDEEA",
-                  }}
-                >
-                  <span className="sr-only">Loading...</span>
-                </div>
+                     
+                 <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
+                
           </div>
                         <div className="wrap2-card mt-5">
                           
                           
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                         </div>
@@ -357,55 +371,58 @@ export default function PricingLoading() {
                       <div className="card-1-111">
                         <div className="wrap-card">
                           <h1 className="heading-card1"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <h1 className="heading-14"><div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div></h1>
                           <p className="paragraph-4">
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                           </p>
@@ -414,36 +431,34 @@ export default function PricingLoading() {
                             
                         </div>
                         <div className='text-center'>
-                      <div
-                  className="spinner-grow text-center"
-                  role="status"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    backgroundColor: "#CFDEEA",
-                  }}
-                >
-                  <span className="sr-only">Loading...</span>
-                </div>
+                     
+                 <Skeleton 
+                            baseColor='#CFDEEA'circle={true} style={{
+                            height: "70px",
+                            borderRadius: "50px",
+                            width: "70px",
+                            backgroundColor:''
+                          }}/>
           </div>
                         <div className="wrap2-card mt-5">
                           
                           
                           <div
-                        className="spinner-grow text-center"
+                        className="text-center"
                         role="status"
                         style={{ width: "auto", height: "0px" }}
                       >
-                        <ProgressBar
-                          variant="primary"
+                        <Skeleton 
+                 baseColor='#CFDEEA'
+                          
                           style={{
                             height: "10px",
                             borderRadius: "50px",
-                            width: "20vw",
-                            backgroundColor: "#CFDEEA",
+                            width: "100%",
+                            
                           }}
-                          className="align-self-center "
-                          now={0}
+                          
+                          
                         />
                       </div>
                         </div>

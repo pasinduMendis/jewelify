@@ -3,253 +3,35 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export default function InvenLoading() {
+export default function InvenLoadingSync({dispType}) {
   return (
     <>
-      <div className='px-5 ' style={{ width: '100%' }}>
-        <div
-          className='row d-flex justify-content-between my-3 p-3'
-          style={{ backgroundColor: '#E3F2FF' }}
-        >
-           <div className='col-3 row'>
-            <div
-              className='col-4 d-flex justify-content-center align-items-center'
-              
-            >
-             <div
-                
-                >
-                  <Skeleton 
-                            baseColor='#CFDEEA'circle={true} style={{
-                            height: "70px",
-                            borderRadius: "50px",
-                            width: "70px",
-                            backgroundColor:''
-                          }}/>
-                </div>
-            </div>
-            <div className='col-8 align-items-center '>
-              <p className='mt-4 mb-4'>
-              <h2
-                        className="text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px"}}
-                      >
-                        <Skeleton 
+      <div className='px-5 py-5 block-308 ' style={{ width: '100%' }}>
+      <button
+                onClick={() => dispType("CONNECT")}
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                className="pb-4"
+              >
+                <img
+                  src="images/Vector-1.svg"
+                  loading="lazy"
+                  data-w-id="fbecfd21-e3d0-0374-acf5-5fbf7d3aefaa"
+                  alt=""
+                  className="image-13"
+                />
+              </button>
+      <h1 className="text-center"> 
+      <Skeleton 
                             baseColor='#CFDEEA'
                           
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-              </p>
-              <h2
-                        className=" Skeleton text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
                           style={{
                             height: "20px",
-                            borderRadius: "70px",
-                            width: "40px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-            </div>
-          </div>
-          <div className='col-3 row'>
-            <div
-              className='col-4 d-flex justify-content-center align-items-center'
-              
-            >
-             <div
-                
-                >
-                  <Skeleton 
-                            baseColor='#CFDEEA'circle={true} style={{
-                            height: "70px",
                             borderRadius: "50px",
-                            width: "70px",
-                            backgroundColor:''
-                          }}/>
-                </div>
-            </div>
-            <div className='col-8 align-items-center '>
-              <p className='mt-4 mb-4'>
-              <h2
-                        className="text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px"}}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
+                            width: "300px",
                             backgroundColor:''
                           }}
-                         
-                          
-                        />
-                      
-              </h2>
-              </p>
-              <h2
-                        className=" Skeleton text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          style={{
-                            height: "20px",
-                            borderRadius: "70px",
-                            width: "40px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-            </div>
-          </div>
-          <div className='col-3 row'>
-            <div
-              className='col-4 d-flex justify-content-center align-items-center'
-              
-            >
-             <div
-                
-                >
-                  <Skeleton 
-                            baseColor='#CFDEEA'
-                            circle={true} style={{
-                            height: "70px",
-                            borderRadius: "50px",
-                            width: "70px",
-                            backgroundColor:''
-                            
-                          }}/>
-                </div>
-            </div>
-            <div className='col-8 align-items-center '>
-              <p className='mt-4 mb-4'>
-              <h2
-                        className="text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px"}}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-              </p>
-              <h2
-                        className=" Skeleton text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          style={{
-                            height: "20px",
-                            borderRadius: "70px",
-                            width: "40px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-            </div>
-          </div>
-          <div className='col-3 row'>
-            <div
-              className='col-4 d-flex justify-content-center align-items-center'
-              
-            >
-             <div
-                
-                >
-                  <Skeleton 
-                            baseColor='#CFDEEA'circle={true} style={{
-                            height: "70px",
-                            borderRadius: "50px",
-                            width: "70px",
-                            backgroundColor:''
-                          }}/>
-                </div>
-            </div>
-            <div className='col-8 align-items-center '>
-              <p className='mt-4 mb-4'>
-              <h2
-                        className="text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px"}}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          
-                          style={{
-                            height: "10px",
-                            borderRadius: "50px",
-                            width: "100px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-              </p>
-              <h2
-                        className=" Skeleton text-secondary"
-                        role="status"
-                        style={{ width: "auto", height: "0px",margin:0,padding:0 }}
-                      >
-                        <Skeleton 
-                            baseColor='#CFDEEA'
-                          style={{
-                            height: "20px",
-                            borderRadius: "70px",
-                            width: "40px",
-                            backgroundColor:''
-                          }}
-                         
-                          
-                        />
-                      
-              </h2>
-            </div>
-          </div>
-        </div>
+                        /></h1>
         <div className='div-block-12 bg-white'>
           <div className='div-block-14  mt-3'>
           <Skeleton 
@@ -299,8 +81,8 @@ export default function InvenLoading() {
         </div>
         <div style={{ display: 'block' }} id='displayFilter'>
           <div className='w-embed' style={{height:'auto'}}>
-            <div className='table-wrap' style={{height:'auto'}}>
-              <table className='table-1'>
+          <div className="table-wrap" style={{height:'auto',maxHeight:'200px'}}> 
+              <table className='table-1' style={{borderSpacing:'10px'}}>
                 <thead style={{ textAlign: 'center' }}>
                   <tr>
                     <th scope='col' className='p-3'>
@@ -2067,8 +1849,6 @@ export default function InvenLoading() {
                             width: "200px",
                             backgroundColor:''
                           }}
-                         
-                          
                         />
                       
               </h2>

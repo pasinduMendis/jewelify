@@ -1834,3 +1834,17 @@ textarea.w-select {
 .progress-bar{
   background-color:	#6495ED !important;
 }
+
+*::-webkit-scrollbar {
+  width:7px;
+  height:7px;
+  border-radius:20px;
+  }
+  *::-webkit-scrollbar-track{
+  background:transparent;
+  border-radius:20px;
+  }
+  *::-webkit-scrollbar-thumb{
+  background-color:#0288F7;
+  border-radius:20px;
+  }
